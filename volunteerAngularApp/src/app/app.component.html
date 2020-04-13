@@ -3,6 +3,14 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
     <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Potrzeby
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" routerLink="/add-need" *ngIf="isNeedy">Dodaj potrzebę</a>
+      <a class="dropdown-item" routerLink="/my-needs" *ngIf="isNeedy">Moje potrzeby</a>
+    </div>
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
 </nav>
