@@ -5,23 +5,21 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from '@/_models/user';
 import { Role } from '@/_models/role';
 
+// array in local storage for registered users
+const users = JSON.parse(localStorage.getItem('users')) || [];
+
 
 export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log("Fake backed interceptor");
-
-    const users: User[] = [
-      { id: 1, username: 'admin', password: 'admin', firstName: 'Euzebiusz', lastName: 'Szefuncio', role: Role.Admin },
-      { id: 2, username: 'volunteer', password: 'volunteer', firstName: 'Mariusz', lastName: 'Wolontariusz', role: Role.Volunteer },
-      { id: 3, username: 'needy', password: 'needy', firstName: 'Jerzy', lastName: 'Dziadzio', role: Role.Needy }
-    ];
-
-
-    console.log(users);
+    // const users: User[] = [
+    //   { id: 1, username: 'admin', password: 'admin', firstName: 'Euzebiusz', lastName: 'Szefuncio', role: Role.Admin },
+    //   { id: 2, username: 'volunteer', password: 'volunteer', firstName: 'Mariusz', lastName: 'Wolontariusz', role: Role.Volunteer },
+    //   { id: 3, username: 'needy', password: 'needy', firstName: 'Jerzy', lastName: 'Dziadzio', role: Role.Needy }
+    // ];
 
     const authHeader = request.headers.get('Authorization');
-    const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
+    const isLoggedIn = authHeader && authHeader.startsWith('fake-jwt-token');
     const roleString = isLoggedIn && authHeader.split('.')[1];
     const role = roleString ? Role[roleString] : null;
 
@@ -31,10 +29,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       // authenticate - public
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
 
-        console.log("username:" +  request.body.username);
-        console.log("password:" +  request.body.password);
-        console.log(users);
-
         const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
         if (!user) return error('Username or password is incorrect');
         return ok({
@@ -43,12 +37,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           firstName: user.firstName,
           lastName: user.lastName,
           role: user.role,
-          token: `fake-jwt-token.${user.role}`
+          token: `fake-jwt-token.${user.role}.${user.id}`
         });
       }
 
       // get user by id - admin or user (user can only access their own record)
       if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
+
         if (!isLoggedIn) return unauthorised();
 
         // get id from request url
@@ -56,7 +51,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         let id = parseInt(urlParts[urlParts.length - 1]);
 
         // only allow normal users access to their own record
-        const currentUser = users.find(x => x.role === role);
+        const currentUser = users.find(x => x.id === id);
         if (id !== currentUser.id && role !== Role.Admin) return unauthorised();
 
         const user = users.find(x => x.id === id);
@@ -72,11 +67,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       // post user (registration)
       if (request.url.endsWith('/users') && request.method === 'POST') {
 
-        console.log("registration");
         const user = request.body;
         user.id = users.length + 1;
         users.push(user);
-        console.log(users);
+        localStorage.setItem('users', JSON.stringify(users));
         return ok(user);
       }
 
