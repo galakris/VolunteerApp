@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { AddNeedComponent } from './add-need/add-need.component';
 import { MyNeedsComponent } from './my-needs/my-needs.component';
 import { NeedsListComponent } from './needs-list/needs-list.component';
@@ -24,6 +25,10 @@ const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
     },
     {
       path: 'needs',

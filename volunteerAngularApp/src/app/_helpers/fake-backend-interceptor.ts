@@ -8,11 +8,17 @@ import { Role } from '@/_models/role';
 
 export class FakeBackendInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    console.log("Fake backed interceptor");
+
     const users: User[] = [
       { id: 1, username: 'admin', password: 'admin', firstName: 'Euzebiusz', lastName: 'Szefuncio', role: Role.Admin },
       { id: 2, username: 'volunteer', password: 'volunteer', firstName: 'Mariusz', lastName: 'Wolontariusz', role: Role.Volunteer },
       { id: 3, username: 'needy', password: 'needy', firstName: 'Jerzy', lastName: 'Dziadzio', role: Role.Needy }
     ];
+
+
+    console.log(users);
 
     const authHeader = request.headers.get('Authorization');
     const isLoggedIn = authHeader && authHeader.startsWith('Bearer fake-jwt-token');
@@ -24,6 +30,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       // authenticate - public
       if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
+
+        console.log("username:" +  request.body.username);
+        console.log("password:" +  request.body.password);
+        console.log(users);
+
         const user = users.find(x => x.username === request.body.username && x.password === request.body.password);
         if (!user) return error('Username or password is incorrect');
         return ok({
@@ -56,6 +67,17 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       if (request.url.endsWith('/users') && request.method === 'GET') {
         if (role !== Role.Admin) return unauthorised();
         return ok(users);
+      }
+
+      // post user (registration)
+      if (request.url.endsWith('/users') && request.method === 'POST') {
+
+        console.log("registration");
+        const user = request.body;
+        user.id = users.length + 1;
+        users.push(user);
+        console.log(users);
+        return ok(user);
       }
 
       // pass through any requests not handled above

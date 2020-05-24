@@ -1,10 +1,15 @@
-<h1>Home</h1>
-<p>You're logged in with Angular 7 & JWT!!</p>
-<p>Your role is: <strong>{{currentUser.role}}</strong>.</p>
-<p>This page can be accessed by all authenticated users.</p>
-<div>
-  Current user from secure api end point:
-  <ul>
-    <li *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
-  </ul>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-lg-8 offset-lg-0">
+        <h1>Strona główna</h1>
+        <p>
+          Rola: <strong>{{currentUser.role}}</strong>
+        </p>
+        <p>
+          Użytkownik: <strong *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsListComponent } from './needs-list/needs-list.component';
-import { MyNeedsComponent } from './my-needs/my-needs.component'; // used to create fake backend
+import { MyNeedsComponent } from './my-needs/my-needs.component';
+import { RegisterComponent } from './register/register.component'; // used to create fake backend
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MyNeedsComponent } from './my-needs/my-needs.component'; // used to cre
     LoginComponent,
     AddNeedComponent,
     NeedsListComponent,
-    MyNeedsComponent
+    MyNeedsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
