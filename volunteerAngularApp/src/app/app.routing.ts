@@ -1,3 +1,7 @@
+import { RegisterComponent } from './register/register.component';
+import { AddNeedComponent } from './add-need/add-need.component';
+import { MyNeedsComponent } from './my-needs/my-needs.component';
+import { NeedsListComponent } from './needs-list/needs-list.component';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home';
@@ -22,7 +26,28 @@ const appRoutes: Routes = [
         path: 'login',
         component: LoginComponent
     },
-
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
+    {
+      path: 'needs',
+      component: NeedsListComponent,
+      canActivate: [AuthGuardService],
+      data: { roles: [Role.Volunteer, Role.Admin]}
+    },
+    {
+      path: 'my-needs',
+      component: MyNeedsComponent,
+      canActivate: [AuthGuardService],
+      data: { roles: [Role.Needy]}
+    },
+    {
+      path: 'add-need',
+      component: AddNeedComponent,
+      canActivate: [AuthGuardService],
+      data: {roles: [Role.Needy]}
+    },
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];

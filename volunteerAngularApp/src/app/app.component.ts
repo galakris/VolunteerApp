@@ -11,21 +11,25 @@ import { Role } from './_models/role';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    currentUser: User;
+  currentUser: User;
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
-    get isAdmin() {
-        return this.currentUser && this.currentUser.role === Role.Admin;
-    }
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.Admin;
+  }
 
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
-    }
+  get isNeedy() {
+    return this.currentUser && this.currentUser.role === Role.Needy;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }
