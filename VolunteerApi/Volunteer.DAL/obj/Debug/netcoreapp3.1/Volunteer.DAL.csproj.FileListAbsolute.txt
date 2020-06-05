@@ -1,9 +1,0 @@
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\bin\Debug\netcoreapp3.1\Volunteer.DAL.deps.json
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\bin\Debug\netcoreapp3.1\Volunteer.DAL.dll
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.csprojAssemblyReference.cache
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.AssemblyInfoInputs.cache
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.AssemblyInfo.cs
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\bin\Debug\netcoreapp3.1\Volunteer.DAL.pdb
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.csproj.CoreCompileInputs.cache
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.dll
-C:\Prywatne\VolunteerApp\VolunteerApi\Volunteer.DAL\obj\Debug\netcoreapp3.1\Volunteer.DAL.pdb
