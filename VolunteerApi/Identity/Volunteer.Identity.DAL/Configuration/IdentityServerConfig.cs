@@ -18,20 +18,16 @@ namespace Volunteer.Identity.DAL.Configuration
        {
             new Client
             {
-                ClientId = "client",
-
-            // no interactive user, use the clientid/secret for authentication
-                AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-            // secret for authentication
-                ClientSecrets =
-                {
-                    new Secret("secret".Sha256())
-                },
-
-                AllowOfflineAccess = true,
-            // scopes that client has access to
-                AllowedScopes = { "api1", StandardScopes.OfflineAccess }
+                RequireConsent = false,
+                ClientId = "angular_spa",
+                ClientName = "Angular SPA",
+                AllowedGrantTypes = GrantTypes.Implicit,
+                AllowedScopes = { "openid", "profile", "email", "api.read" },
+                RedirectUris = {"http://localhost:4200/auth-callback"},
+                PostLogoutRedirectUris = {"http://localhost:4200/"},
+                AllowedCorsOrigins = {"http://localhost:4200"},
+                AllowAccessTokensViaBrowser = true,
+                AccessTokenLifetime = 3600
             }
         };
 
