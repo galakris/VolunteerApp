@@ -7,5 +7,7 @@ export class User {
   firstName: string;
   lastName: string;
   role: Role;
+  latitude?: string;
+  longitude?: string;
   token?: string;
 }
