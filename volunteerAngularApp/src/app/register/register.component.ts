@@ -1,7 +1,7 @@
 import { Role } from './../_models/role';
 import { AuthenticationService } from './../_services/authentication.service';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
+import { first, last } from 'rxjs/operators';
 import { User } from '@/_models/user';
 import { UserService } from '@/_services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   loading = false;
-
+  longitude: string;
+  latitude: string;
   roles = [{ value: Role.Volunteer, name: 'Wolontariusz' }, { value: Role.Needy, name: 'Potrzebujący' }];
 
   constructor(
@@ -40,6 +41,8 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
+
+    this.getCurrentLocation();
   }
 
   onSubmit() {
@@ -61,7 +64,10 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.value.password,
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
-      role: this.registerForm.value.role });
+      role: this.registerForm.value.role,
+      latitude: typeof this.latitude === 'undefined' ? '0' : this.latitude,
+      longitude: typeof this.longitude === 'undefined' ? '0' : this.longitude
+    });
 
     console.log(user);
 
@@ -74,6 +80,18 @@ export class RegisterComponent implements OnInit {
         error => {
           this.loading = false;
         });
+  }
+
+  getCurrentLocation() {
+    if (navigator.geolocation) {
+      return navigator.geolocation.getCurrentPosition(position => {
+        this.latitude = position.coords.latitude.toFixed(4);
+        this.longitude = position.coords.longitude.toFixed(4);
+      });
+    } else {
+      alert('Geolocation nie jest wspierane przez tą przeglądarke.');
+      return null;
+    }
   }
 
 }
