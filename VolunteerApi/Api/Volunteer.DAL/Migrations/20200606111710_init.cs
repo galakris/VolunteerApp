@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Volunteer.DAL.Migrations
@@ -15,8 +16,9 @@ namespace Volunteer.DAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     first_name = table.Column<string>(nullable: true),
                     last_name = table.Column<string>(nullable: true),
-                    username = table.Column<string>(nullable: true),
-                    password = table.Column<string>(nullable: true)
+                    user_name = table.Column<string>(nullable: true),
+                    password_hash = table.Column<byte[]>(nullable: true),
+                    password_salt = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
                 {
