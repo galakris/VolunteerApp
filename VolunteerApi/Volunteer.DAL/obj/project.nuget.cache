@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2Q/D8amq6TX+iTBM1YmfXY27+3iqDsOkvMi1bqwOlWX64Z16cA88ZepJvgWGCaqh9AZq0+pAcc98EB3TYJTXeQ==",
+  "dgSpecHash": "WcbZGNl+F7NK88WtYOVZ6p4qbjP0FzmRHBXJGoz+0taLCbq6cemP07XcrAtQ5a1C2iO5sB17A5kDIf2cY3rdPQ==",
   "success": true,
-  "projectFilePath": "C:\\Prywatne\\VolunteerApp\\VolunteerApi\\Volunteer.DAL\\Volunteer.DAL.csproj",
+  "projectFilePath": "C:\\Projects\\VolunteerApp\\VolunteerApi\\Volunteer.DAL\\Volunteer.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\slota\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\slota\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
@@ -26,7 +26,8 @@
     "C:\\Users\\slota\\.nuget\\packages\\system.collections.immutable\\1.7.0\\system.collections.immutable.1.7.0.nupkg.sha512",
     "C:\\Users\\slota\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\slota\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.0\\system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512",
-    "C:\\Users\\slota\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\slota\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
+    "C:\\Users\\slota\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],
   "logs": []
 }
