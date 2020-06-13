@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,6 +18,7 @@ namespace Volunteer.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Many-To-Many RoleUserAccount
             modelBuilder.Entity<RoleUserAccount>()
                 .HasKey(x => new { x.RoleId, x.UserAccountId });
 
@@ -28,6 +30,20 @@ namespace Volunteer.DAL
             modelBuilder.Entity<RoleUserAccount>()
                 .HasOne(x => x.UserAccount)
                 .WithMany(x => x.RoleUserAccount)
+                .HasForeignKey(x => x.UserAccount);
+
+            // Many-To-Many UserAccountNeed
+            modelBuilder.Entity<UserAccountNeed>()
+                .HasKey(x => new { x.NeedId, x.UserAccountId });
+
+            modelBuilder.Entity<UserAccountNeed>()
+                .HasOne(x => x.Need)
+                .WithMany(x => x.UserAccountNeeds)
+                .HasForeignKey(x => x.Need);
+
+            modelBuilder.Entity<UserAccountNeed>()
+                .HasOne(x => x.UserAccount)
+                .WithMany(x => x.UserAccountNeeds)
                 .HasForeignKey(x => x.UserAccount);
         }
     }

@@ -17,5 +17,7 @@ namespace Volunteer.DAL.Entities
         public byte[] PasswordSalt { get; set; }
 
         public virtual ICollection<RoleUserAccount> RoleUserAccount { get; set; }
+
+        public virtual ICollection<UserAccountNeed> UserAccountNeeds { get; set; }
     }
 }
