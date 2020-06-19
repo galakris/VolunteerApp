@@ -1,16 +1,20 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Volunteer.DAL;
 using Volunteer.Services.Users.Interfaces;
 using Volunteer.Services.Users.Services;
+using Volunteer.SharedObjects;
 using VolunteerApi.ConfigurationModels;
 
 namespace VolunteerApi
@@ -47,6 +51,10 @@ namespace VolunteerApi
                         {
                             context.Fail("Unauthorized");
                         }
+                        var claimsIdentity = new ApiIdentity();
+                        claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                        claimsIdentity.UserAcountId = user.UserAccountId;
+                        context.Principal.AddIdentity(claimsIdentity);
                         return Task.CompletedTask;
                     }
                 };
@@ -61,7 +69,9 @@ namespace VolunteerApi
                 };
             });
 
+            services.AddHttpContextAccessor();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped(typeof(ApiIdentity), sp => (sp.GetService(typeof(IHttpContextAccessor)) as IHttpContextAccessor).HttpContext.User.Identities.FirstOrDefault(x => x is ApiIdentity) as ApiIdentity);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

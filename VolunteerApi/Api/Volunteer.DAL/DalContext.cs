@@ -16,6 +16,10 @@ namespace Volunteer.DAL
 
         public DbSet<RoleEntity> Roles { get; set; }
 
+        public DbSet<NeedEntity> Needs { get; set; }
+
+        public DbSet<UserAccountNeed> UserAccountNeeds { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Many-To-Many RoleUserAccount

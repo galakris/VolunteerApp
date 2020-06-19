@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Extensions\Volunteer.SharedObjects\Volunteer.SharedObjects.csproj" />
+    <ProjectReference Include="..\Services\Volunteer.Services.Needs\Volunteer.Services.Needs.csproj" />
     <ProjectReference Include="..\Services\Volunteer.Services.Users\Volunteer.Services.Users.csproj" />
     <ProjectReference Include="..\Volunteer.DAL\Volunteer.DAL.csproj" />
   </ItemGroup>
