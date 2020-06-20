@@ -8,5 +8,7 @@ export class Need {
   category: NeedCategory;
   state: NeedState;
   description: string;
+  lat?: number;
+  lng?: number;
   distance?: number;
 }
