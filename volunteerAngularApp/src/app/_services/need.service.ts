@@ -9,7 +9,11 @@ export class NeedService {
 
   constructor(private http: HttpClient) { }
 
-  addNeed(need: Need){
-    return this.http.post<Need>(`localhost:8080/needs`, need);
+  addNeed(need: Need) {
+    return this.http.post<Need>(`http://volunteer-identity.azurewebsites.net/api/needs`, need);
+  }
+
+  getNeeds() {
+    return this.http.get<Need[]>(`http://volunteer-identity.azurewebsites.net/api/needs`);
   }
 }
