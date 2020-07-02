@@ -16,6 +16,6 @@ export class UserService {
   }
 
   addUser(user: User) {
-    return this.http.post<User>(`localhost:8080/users`, user);
+    return this.http.post<User>(`http://volunteer-app-wwsis.azurewebsites.net/api/account/register`, user);
   }
 }

@@ -60,6 +60,7 @@ export class RegisterComponent implements OnInit {
 
     const user: User = ({
       id: null,
+      email: this.registerForm.value.email,
       username: this.registerForm.value.email,
       password: this.registerForm.value.password,
       firstName: this.registerForm.value.firstName,

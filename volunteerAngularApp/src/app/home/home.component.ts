@@ -14,7 +14,7 @@ import { NeedState } from '@/_models/need-state';
 })
 export class HomeComponent {
   currentUser: User;
-  userFromApi: User;
+  // userFromApi: User;
   needs: Need[];
 
   constructor(

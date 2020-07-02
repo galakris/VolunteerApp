@@ -7,7 +7,7 @@
           Rola: <strong>{{currentUser.role}}</strong>
         </p>
         <p>
-          Użytkownik: <strong *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</strong>
+          Użytkownik: <strong *ngIf="currentUser">{{currentUser.firstName}} {{currentUser.lastName}}</strong>
         </p>
       </div>
     </div>
