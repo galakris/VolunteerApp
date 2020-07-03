@@ -52,13 +52,12 @@ export class AddNeedComponent implements OnInit {
 
     this.loading = true;
 
-    // it should works ? then this.user is useless
-    // probably i should get coordinates from address here
-
     const need: Need = ({
       id: null,
+      name: this.currentUser.firstName + ' ' + this.currentUser.lastName,
       category: this.needForm.value.category,
       description: this.needForm.value.description,
+      deadlineDate: new Date(new Date().getTime() + 86400000), //current datetime + 1 day
       state: NeedState.New,
       userId: this.currentUser.id
     });

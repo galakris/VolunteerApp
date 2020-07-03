@@ -1,5 +1,5 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="navbar sticky-top navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
     <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
