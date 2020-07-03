@@ -58,6 +58,8 @@ export class AddNeedComponent implements OnInit {
       category: this.needForm.value.category,
       description: this.needForm.value.description,
       deadlineDate: new Date(new Date().getTime() + 86400000), //current datetime + 1 day
+      latitude: this.currentUser.latitude,
+      longitude: this.currentUser.longitude,
       state: NeedState.New,
       userId: this.currentUser.id
     });

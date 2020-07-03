@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
     // add markers to map
     this.needs.forEach((need) => {
 
-      console.log("need: " + need.description + need.lng + need.lat);
+      console.log("need: " + need.description + need.longitude + need.latitude);
 
       // create a HTML element for each feature
       // var el = document.createElement('div');
@@ -44,7 +44,7 @@ export class MapComponent implements OnInit {
       //   .setLngLat([this.lng, this.lat])
       //   .addTo(this.map);
       var markers = new mapboxgl.Marker()
-        .setLngLat([need.lng, need.lat])
+        .setLngLat([need.longitude, need.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
           .setHTML('<h3>' + need.category + '</h3><p>' + need.description +
           '</p><button (click)="getNeed(' + need.description + ')">Pomagam</button>'))
