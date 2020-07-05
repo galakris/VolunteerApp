@@ -1,3 +1,4 @@
+
 <section class="jumbotron text-center">
   <div class="container">
     <h1 class="jumbotron-heading">Potrzeby</h1>
@@ -8,13 +9,16 @@
     <p>
       Rola: <strong>{{currentUser.role}}</strong>
     </p>
-    <a href="#map" class="btn btn-primary m-2">Mapa</a>
+    <a href="#mapsection" class="btn btn-primary m-2">Mapa</a>
     <a href="#list" class="btn btn-primary m-2">Lista</a>
   </div>
+  <div id="mapsection" class="container" style="height: 500px;">
+    <app-map [needs]="needs"></app-map>
+  </div>
+
+  <div id="list">
+    <app-needs-list [needs]="needs"></app-needs-list>
+  </div>
 </section>
-<div id="map" class="container" style="height: 500px;">
-  <app-map [needs]="needs"></app-map>
-</div>
-<div id="list">
-  <app-needs-list [needs]="needs"></app-needs-list>
-</div>
+
+
