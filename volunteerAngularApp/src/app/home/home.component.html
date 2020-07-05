@@ -1,15 +1,20 @@
-<div class="jumbotron">
+<section class="jumbotron text-center">
   <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3 col-lg-8 offset-lg-0">
-        <h1>Strona główna</h1>
-        <p>
-          Rola: <strong>{{currentUser.role}}</strong>
-        </p>
-        <p>
-          Użytkownik: <strong *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</strong>
-        </p>
-      </div>
-    </div>
+    <h1 class="jumbotron-heading">Potrzeby</h1>
+    <p>Piękny tekst zachęcający wolontariuszy do pomagania :)</p>
+    <p>
+      Użytkownik: <strong *ngIf="currentUser">{{currentUser.firstName}} {{currentUser.lastName}}</strong>
+    </p>
+    <p>
+      Rola: <strong>{{currentUser.role}}</strong>
+    </p>
+    <a href="#map" class="btn btn-primary m-2">Mapa</a>
+    <a href="#list" class="btn btn-primary m-2">Lista</a>
   </div>
+</section>
+<div id="map" class="container" style="height: 500px;">
+  <app-map [needs]="needs"></app-map>
+</div>
+<div id="list">
+  <app-needs-list [needs]="needs"></app-needs-list>
 </div>

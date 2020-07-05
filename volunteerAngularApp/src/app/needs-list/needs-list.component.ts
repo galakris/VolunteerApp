@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Need } from '@/_models/need';
 
 @Component({
   selector: 'app-needs-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./needs-list.component.css']
 })
 export class NeedsListComponent implements OnInit {
+
+  @Input() needs: Need[];
 
   constructor() { }
 

@@ -1,3 +1,4 @@
+import { NeedsOverviewComponent } from './needs-overview/needs-overview.component';
 import { RegisterComponent } from './register/register.component';
 import { AddNeedComponent } from './add-need/add-need.component';
 import { MyNeedsComponent } from './my-needs/my-needs.component';
@@ -41,6 +42,12 @@ const appRoutes: Routes = [
       component: MyNeedsComponent,
       canActivate: [AuthGuardService],
       data: { roles: [Role.Needy]}
+    },
+    {
+      path: 'needs-overview',
+      component: NeedsOverviewComponent,
+      canActivate: [AuthGuardService],
+      data: { roles: [Role.Volunteer]}
     },
     {
       path: 'add-need',
