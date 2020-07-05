@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   loading = false;
-  longitude: string;
-  latitude: string;
+  longitude: number;
+  latitude: number;
   roles = [{ value: Role.Volunteer, name: 'Wolontariusz' }, { value: Role.Needy, name: 'Potrzebujący' }];
 
   constructor(
@@ -60,13 +60,14 @@ export class RegisterComponent implements OnInit {
 
     const user: User = ({
       id: null,
+      email: this.registerForm.value.email,
       username: this.registerForm.value.email,
       password: this.registerForm.value.password,
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
       role: this.registerForm.value.role,
-      latitude: typeof this.latitude === 'undefined' ? '0' : this.latitude,
-      longitude: typeof this.longitude === 'undefined' ? '0' : this.longitude
+      latitude: typeof this.latitude === 'undefined' ? 0.0 : this.latitude,
+      longitude: typeof this.longitude === 'undefined' ? 0.0 : this.longitude
     });
 
     console.log(user);
@@ -85,8 +86,8 @@ export class RegisterComponent implements OnInit {
   getCurrentLocation() {
     if (navigator.geolocation) {
       return navigator.geolocation.getCurrentPosition(position => {
-        this.latitude = position.coords.latitude.toFixed(4);
-        this.longitude = position.coords.longitude.toFixed(4);
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
       });
     } else {
       alert('Geolocation nie jest wspierane przez tą przeglądarke.');

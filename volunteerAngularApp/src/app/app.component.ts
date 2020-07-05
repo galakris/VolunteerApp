@@ -28,6 +28,10 @@ export class AppComponent {
     return this.currentUser && this.currentUser.role === Role.Needy;
   }
 
+  get isVolunteer() {
+    return this.currentUser && this.currentUser.role === Role.Volunteer;
+  }
+
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);

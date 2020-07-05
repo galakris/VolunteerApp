@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
@@ -20,10 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Extensions\Volunteer.SharedObjects\Volunteer.SharedObjects.csproj" />
+    <ProjectReference Include="..\Services\Volunteer.Services.Needs\Volunteer.Services.Needs.csproj" />
+    <ProjectReference Include="..\Services\Volunteer.Services.Users\Volunteer.Services.Users.csproj" />
     <ProjectReference Include="..\Volunteer.DAL\Volunteer.DAL.csproj" />
   </ItemGroup>
 

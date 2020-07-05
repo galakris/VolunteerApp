@@ -14,7 +14,9 @@ import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helper
 import { AddNeedComponent } from './add-need/add-need.component';
 import { NeedsListComponent } from './needs-list/needs-list.component';
 import { MyNeedsComponent } from './my-needs/my-needs.component';
-import { RegisterComponent } from './register/register.component'; // used to create fake backend
+import { RegisterComponent } from './register/register.component';
+import { MapComponent } from './map/map.component';
+import { NeedsOverviewComponent } from './needs-overview/needs-overview.component'; // used to create fake backend
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { RegisterComponent } from './register/register.component'; // used to cr
     AddNeedComponent,
     NeedsListComponent,
     MyNeedsComponent,
-    RegisterComponent
+    RegisterComponent,
+    MapComponent,
+    NeedsOverviewComponent
   ],
   imports: [
     BrowserModule,

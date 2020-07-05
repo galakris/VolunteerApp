@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\slota\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\slota\\.nuget\\packages"
+    ]
+  }
+}

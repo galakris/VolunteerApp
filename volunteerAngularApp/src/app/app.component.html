@@ -1,10 +1,11 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="navbar sticky-top navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
     <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
     <a class="nav-item nav-link" routerLink="/add-need" *ngIf="isNeedy">Dodaj potrzebę</a>
     <a class="nav-item nav-link" routerLink="/my-needs" *ngIf="isNeedy">Moje potrzeby</a>
+    <a class="nav-item nav-link" routerLink="/needs-overview" *ngIf="isVolunteer">Potrzeby</a>
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
 </nav>
