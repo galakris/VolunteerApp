@@ -23,6 +23,7 @@ namespace VolunteerApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("register")]
+        [ProducesResponseType(typeof(UserAccountDto), 200)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
         {        
             return Ok(await _userService.Create(model));

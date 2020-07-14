@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\Extensions\Volunteer.SharedObjects\Volunteer.SharedObjects.csproj" />
     <ProjectReference Include="..\..\Volunteer.DAL\Volunteer.DAL.csproj" />
   </ItemGroup>
 

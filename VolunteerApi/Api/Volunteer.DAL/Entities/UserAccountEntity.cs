@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Volunteer.DAL.Entities.Base;
+using Volunteer.DAL.Enums;
 using Volunteer.DAL.Relations;
 
 namespace Volunteer.DAL.Entities
@@ -11,6 +12,12 @@ namespace Volunteer.DAL.Entities
         public string LastName { get; set; }
 
         public string UserName { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
+        public Role Role { get; set; }
 
         public byte[] PasswordHash { get; set; }
 

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Volunteer.DAL.Entities;
+using Volunteer.DAL.Enums;
 using Volunteer.DAL.Relations;
 
 namespace Volunteer.DAL
@@ -17,6 +18,8 @@ namespace Volunteer.DAL
         public DbSet<RoleEntity> Roles { get; set; }
 
         public DbSet<NeedEntity> Needs { get; set; }
+
+        public DbSet<RoleUserAccount> RoleUserAccounts { get; set; }
 
         public DbSet<UserAccountNeed> UserAccountNeeds { get; set; }
 
@@ -34,7 +37,7 @@ namespace Volunteer.DAL
             modelBuilder.Entity<RoleUserAccount>()
                 .HasOne(x => x.UserAccount)
                 .WithMany(x => x.RoleUserAccount)
-                .HasForeignKey(x => x.UserAccount);
+                .HasForeignKey(x => x.UserAccountId);
 
             // Many-To-Many UserAccountNeed
             modelBuilder.Entity<UserAccountNeed>()
@@ -43,12 +46,16 @@ namespace Volunteer.DAL
             modelBuilder.Entity<UserAccountNeed>()
                 .HasOne(x => x.Need)
                 .WithMany(x => x.UserAccountNeeds)
-                .HasForeignKey(x => x.Need);
+                .HasForeignKey(x => x.NeedId);
 
             modelBuilder.Entity<UserAccountNeed>()
                 .HasOne(x => x.UserAccount)
                 .WithMany(x => x.UserAccountNeeds)
-                .HasForeignKey(x => x.UserAccount);
+                .HasForeignKey(x => x.UserAccountId);
+
+            modelBuilder.Entity<NeedEntity>()
+                .Property(x => x.NeedStatus)
+                .HasConversion(new EnumToStringConverter<NeedStatus>());
         }
     }
 }

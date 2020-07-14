@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Volunteer.DAL;
 using Volunteer.DAL.Entities;
+using Volunteer.DAL.Enums;
 using Volunteer.DAL.Relations;
 using Volunteer.Services.Needs.Interfaces;
 using Volunteer.Services.Needs.Models;
@@ -18,11 +19,19 @@ namespace Volunteer.Services.Needs.Services
         private readonly DalContext _dalContext;
         private readonly ApiIdentity _apiIdentity;
 
+        public NeedService(DalContext dalContext, ApiIdentity apiIdentity)
+        {
+            _dalContext = dalContext;
+            _apiIdentity = apiIdentity;
+        }
+
         public async Task<ICollection<NeedDto>> GetNeeds()
         {
-            var needs = _dalContext.Needs.Where(x => x.NeedStatus == DAL.Enums.NeedStatus.NotStarted);
+            var needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                .Where(x => x.NeedStatus == NeedStatus.NotStarted && x.UserAccountNeeds.Any(y => y.UserAccountId != _apiIdentity.UserAcountId))
+                .ToListAsync();
 
-            return await needs.Select(x => new NeedDto()
+            return needs.Select(x => new NeedDto()
             {
                 Category = x.Category,
                 DeadlineDate = x.DeadlineDate,
@@ -31,7 +40,7 @@ namespace Volunteer.Services.Needs.Services
                 Longitude = x.Longitude,
                 NeedId = x.Id,
                 NeedStatus = x.NeedStatus
-            }).ToListAsync();
+            }).ToList();
         }
 
         public async Task<NeedDto> CreateNeed(CreateNeedRequestDto requestDto)
@@ -40,7 +49,7 @@ namespace Volunteer.Services.Needs.Services
             {
                 Description = requestDto.Description,
                 DeadlineDate = requestDto.DeadlineDate,
-                Category = requestDto.Name,
+                Category = requestDto.Category,
                 Latitude = requestDto.Latitude,
                 Longitude = requestDto.Longitude,
                 NeedStatus = DAL.Enums.NeedStatus.NotStarted
@@ -90,7 +99,7 @@ namespace Volunteer.Services.Needs.Services
             _dalContext.Needs.Update(need);
             await _dalContext.SaveChangesAsync();
 
-            return new
+            return new AssignVolunteerToNeedResponseDto()
             {
                 NeedId = need.Id,
                 UserAccountId = _apiIdentity.UserAcountId

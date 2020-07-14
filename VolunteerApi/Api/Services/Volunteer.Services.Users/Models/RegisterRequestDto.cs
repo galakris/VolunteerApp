@@ -24,6 +24,10 @@ namespace Volunteer.Services.Users.Models
         public string LastName { get; set; }
 
         [Required]
-        public Role? Role { get; set; }
+        public Role Role { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
     }
 }
