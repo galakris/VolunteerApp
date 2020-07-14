@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Need } from './../_models/need';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,7 @@ export class NeedService {
   // parameters:
   // user_id  - to calc distance
   // categoty
-  getNeeds() {
+  getNeeds(): Observable<Need[]> {
     return this.http.get<Need[]>(environment.apiUrl + `/needs`);
   }
 }

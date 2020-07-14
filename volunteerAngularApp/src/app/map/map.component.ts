@@ -1,6 +1,6 @@
 import { NeedState } from '@/_models/need-state';
 import { environment } from '../../environments/environment';
-import { Component, OnInit, ChangeDetectorRef, SystemJsNgModuleLoader, Input } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, SystemJsNgModuleLoader, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { Need } from '@/_models/need';
 import { NeedCategory } from '@/_models/need-category';
@@ -10,7 +10,7 @@ import { NeedCategory } from '@/_models/need-category';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
   map: mapboxgl.Map;
   style = 'mapbox://styles/mapbox/streets-v11';
   lat = 51.1105;
@@ -18,6 +18,19 @@ export class MapComponent implements OnInit {
   @Input() needs: Need[];
 
   constructor() { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('onChanges');
+    for (let propName in changes) {
+      // only run when property "data" changed
+      if (propName === 'needs') {
+        //  this line will update posts values
+        this.needs = changes[propName].currentValue;
+
+        this.addMarkers();
+      }
+    }
+  }
 
   ngOnInit() {
     (mapboxgl as any).accessToken = environment.mapbox.accessToken;
@@ -30,24 +43,22 @@ export class MapComponent implements OnInit {
     // Add map controls
     //this.map.addControl(new mapboxgl.NavigationControl());
 
+    this.addMarkers();
+
+  }
+
+  addMarkers() {
     // add markers to map
     this.needs.forEach((need) => {
 
-      console.log("need: " + need.description + need.longitude + need.latitude);
+      console.log('need: ' + need.description + ' ' + need.longitude + ' ' + need.latitude);
 
-      // create a HTML element for each feature
-      // var el = document.createElement('div');
-      // el.className = 'marker';
-
-      // make a marker for each feature and add to the map
-      // var marker = new mapboxgl.Marker()
-      //   .setLngLat([this.lng, this.lat])
-      //   .addTo(this.map);
-      var markers = new mapboxgl.Marker()
+      this.map.setCenter([need.longitude, need.latitude]);
+      const markers = new mapboxgl.Marker()
         .setLngLat([need.longitude, need.latitude])
         .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
           .setHTML('<h3>' + need.category + '</h3><p>' + need.description +
-          '</p><button (click)="getNeed(' + need.description + ')">Pomagam</button>'))
+            '</p><button (click)="getNeed(' + need.description + ')">Pomagam</button>'))
         .addTo(this.map);
     });
   }
