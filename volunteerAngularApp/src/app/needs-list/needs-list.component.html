@@ -1,1 +1,21 @@
-<p>needs-list works!</p>
+
+<div class="container" style="width: 1200px;" >
+    <table mdbTable  striped="true" style="width:100%" responsive="true">
+        <thead>
+          <tr>
+            <th *ngFor="let col of columns" scope="col">
+                {{col}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let nd of needs">
+            <th scope="row">{{nd.id}}</th>
+               <td> {{nd.name}} </td>
+               <td> {{nd.category}} </td>
+               <td> {{nd.description}} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    
