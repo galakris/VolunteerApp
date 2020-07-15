@@ -10,7 +10,11 @@ using Volunteer.DAL.Enums;
 using Volunteer.DAL.Relations;
 using Volunteer.Services.Needs.Interfaces;
 using Volunteer.Services.Needs.Models;
+using Volunteer.Services.Volunteers.Interfaces;
 using Volunteer.SharedObjects;
+using Volunteer.SharedObjects.Enums;
+using Volunteer.SharedObjects.Extensions;
+using Volunteer.SharedObjects.Models;
 
 namespace Volunteer.Services.Needs.Services
 {
@@ -19,7 +23,7 @@ namespace Volunteer.Services.Needs.Services
         private readonly DalContext _dalContext;
         private readonly ApiIdentity _apiIdentity;
 
-        public NeedService(DalContext dalContext, ApiIdentity apiIdentity)
+        public NeedService(DalContext dalContext, ApiIdentity apiIdentity, IVolunteerService volunteerService)
         {
             _dalContext = dalContext;
             _apiIdentity = apiIdentity;
