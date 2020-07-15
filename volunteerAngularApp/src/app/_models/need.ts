@@ -10,7 +10,7 @@ export class Need {
   state: NeedState;
   description: string;
   deadlineDate: Date;
-  lat?: number;
-  lng?: number;
+  latitude?: number;
+  longitude?: number;
   distance?: number;
 }
