@@ -1,7 +1,8 @@
 
-<section class="jumbotron text-center">
+<div id="general">
+<section  id="s1" class="jumbotron text-center">
   <div class="container">
-    <h1 class="jumbotron-heading">Potrzeby</h1>
+    
     <p id="p1">"Kiedy pomagamy innym, pomagamy sobie, ponieważ wszelkie dobro, które dajemy, zatacza koło i wraca do nas"</p>
     <p id="p2">
       Użytkownik: <strong *ngIf="currentUser">{{currentUser.firstName}} {{currentUser.lastName}}</strong>
@@ -12,7 +13,10 @@
     <a href="#mapsection" class="btn btn-primary m-2">Mapa</a>
     <a href="#list" class="btn btn-primary m-2">Lista</a>
   </div>
-  <div id="mapsection" class="container" style="height: 500px;">
+</section>
+<section>
+   <!-- <h1 class="jumbotron-heading; text-center"  style="margin-bottom: 30px;">Potrzebujący</h1> -->
+  <div id="mapsection"  style="height: 800px; margin-top: 0px; margin-left: 10px; margin-right: 10px;">
     <app-map [needs]="needs"></app-map>
   </div>
 
@@ -20,5 +24,6 @@
     <app-needs-list [needs]="needs"></app-needs-list>
   </div>
 </section>
+</div>
 
 

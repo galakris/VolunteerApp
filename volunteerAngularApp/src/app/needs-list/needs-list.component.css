@@ -1,9 +1,19 @@
 
-tr:nth-child(even) {background-color: rgb(230, 250, 183);}
-thead { 
-    background-color: rgb(131, 224, 55);
-    color : green;}
+table {
+    margin-top: 10px;
+    /*box-shadow: 5px 5px 10px */
+}
+
+#n1 { 
+    background-color: hotpink;
+    color: white;
+    border-top: 1px solid purple;
+}
+
 th, td {
+    
   padding: 15px;
   text-align: left;
+  border-bottom: 1px solid indigo;
 }
+tr:hover {background-color: pink;}
