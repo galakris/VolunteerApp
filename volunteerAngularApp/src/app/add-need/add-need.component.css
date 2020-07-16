@@ -1,0 +1,26 @@
+#d1 {
+    background-image: url("http://tapetus.pl/obrazki/n/255977_kredki-serce.jpg" );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: relative;
+    }
+    
+    h2{
+        font-size: 30px;
+        font-style: italic;
+        font-family: 'Times New Roman', Times, serif;
+    
+        color: rgb(250, 252, 249);
+        text-shadow:  0 0 0.3em black ;
+    }
+    
+    label {
+        font-size: 20px;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
+    
+        color: rgb(250, 252, 249);
+        text-shadow: 0 0 0.3em black ;
+    }
