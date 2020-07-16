@@ -21,4 +21,8 @@ export class NeedService {
   getNeeds(): Observable<Need[]> {
     return this.http.get<Need[]>(environment.apiUrl + `/needs`);
   }
+
+  assignNeed(need: Need) {
+    return this.http.get(environment.apiUrl + `/needs/` + need.id + `/takeExecution`);
+  }
 }
