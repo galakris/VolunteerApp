@@ -30,6 +30,10 @@ export class NeedService {
     return this.http.get(environment.apiUrl + `/needs/` + need.id + `/takeExecution`);
   }
 
+  finishNeed(need: Need) {
+    return this.http.get(environment.apiUrl + `/needs/` + need.id + `/finish`);
+  }
+
   deleteNeed(need: Need) {
     return this.http.delete(environment.apiUrl + `/needs/` + need.id);
   }

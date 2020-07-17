@@ -26,7 +26,7 @@
         </ng-container>
         <ng-container *ngIf="parent=='needs-overview'">
           <td>
-            <i *ngIf="nd.needStatus=='Done'" class="fa fa-check fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.needStatus=='Finished'" class="fa fa-check fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.needStatus=='InProgress'" class="fa fa-spinner fa-2x" aria-hidden="true"></i>
           </td>
           <td> {{nd.name}} </td>
@@ -44,7 +44,7 @@
         </ng-container>
         <ng-container *ngIf="parent=='my-needs'">
           <td>
-            <i *ngIf="nd.needStatus=='Done'" class="fa fa-check fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.needStatus=='Finished'" class="fa fa-check fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.needStatus=='InProgress'" class="fa fa-spinner fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.needStatus=='NotStarted'" class="fa fa-search fa-2x" aria-hidden="true"></i>
           </td>

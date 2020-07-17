@@ -38,7 +38,7 @@
           <div *ngIf="submitted && registerForm.controls.phoneNumber.errors"
             style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
             <div *ngIf="registerForm.controls.phoneNumber.errors.required">Numer telefonu jest wymagany</div>
-            <div *ngIf="registerForm.controls.phoneNumber.errors.pattern">Numer telefonu jest niepoprawny</div>
+            <div *ngIf="registerForm.controls.phoneNumber.errors.pattern">Numer telefonu jest niepoprawny (9 cyfr)</div>
           </div>
         </div>
         <div class="form-group">

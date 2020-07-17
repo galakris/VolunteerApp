@@ -77,8 +77,15 @@ export class NeedsListComponent implements OnInit {
   }
 
   completeTask(need: Need) {
-    // to do
     console.log('complete need: ' + need.id);
+    this.needService.finishNeed(need).subscribe(
+      res => {
+        alert('Zakończono pomyślnie :)');
+      },
+      err => {
+        alert('Ups! Coś poszło nie tak');
+      }
+    );
   }
 
   deleteNeed(need: Need) {
