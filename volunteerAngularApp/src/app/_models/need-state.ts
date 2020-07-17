@@ -2,6 +2,7 @@
 export enum NeedState {
   New = 'New',
   Assigned = 'Assigned',
-  Requested = 'Requested'
+  Requested = 'Requested',
+  Finished = 'Finished'
 
 }

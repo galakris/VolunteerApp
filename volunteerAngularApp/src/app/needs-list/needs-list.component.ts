@@ -80,6 +80,10 @@ export class NeedsListComponent implements OnInit {
     console.log('complete need: ' + need.id);
     this.needService.finishNeed(need).subscribe(
       res => {
+        need.needStatus = NeedState.Finished;
+        const index = this.needs.findIndex(n => n.id === need.id);
+        need.needStatus = NeedState.Finished;
+        this.needs[index] = need;
         alert('Zakończono pomyślnie :)');
       },
       err => {
