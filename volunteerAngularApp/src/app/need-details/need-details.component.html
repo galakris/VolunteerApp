@@ -4,6 +4,14 @@
   <div><span>Kategoria: </span>{{need.category}}</div>
   <div><span>Opis: </span>{{need.description}}</div>
   <div><span>Odległość: </span>{{need.distance}}</div>
+  <div *ngIf="need.assignedVolunteer">
+    <div><span>Wolontariusz: </span>{{need.assignedVolunteer.firstName}}</div>
+    <div><span>Numer telefonu: </span>{{need.assignedVolunteer.telephone}}</div>
+  </div>
+  <div *ngIf="need.needy">
+    <div><span>Potrzebujący: </span>{{need.needy.firstName}}</div>
+    <div><span>Numer telefonu:  </span>{{need.needy.telephone}}</div>
+  </div>
   Do rozbudowy
   <button class="m-2" *ngIf="currentUser.role === 'Volunteer'" (click)='assignNeed(need)'>Pomagam</button>
 

@@ -116,7 +116,7 @@ export class RegisterComponent implements OnInit, DoCheck {
       password: this.registerForm.value.password,
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
-      phoneNumber: this.registerForm.value.phoneNumber,
+      telephone: this.registerForm.value.phoneNumber,
       role: this.registerForm.value.role,
       latitude: typeof this.latitude === 'undefined' ? 0.0 : this.latitude,
       longitude: typeof this.longitude === 'undefined' ? 0.0 : this.longitude

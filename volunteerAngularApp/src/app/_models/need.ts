@@ -13,4 +13,11 @@ export class Need {
   latitude?: number;
   longitude?: number;
   distance?: number;
+  assignedVolunteer?: ContactData;
+  needy?: ContactData;
+}
+
+class ContactData {
+  firstName: string;
+  telephone: string;
 }
