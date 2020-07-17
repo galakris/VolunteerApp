@@ -1,0 +1,28 @@
+div{
+    font-size: 20px;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 15px;
+}
+span{
+    font-size: 20px;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    color: rgb(253, 179, 191);
+}
+
+h2{
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   color: rgb(253, 179, 191);
+}
+
+#d1{
+    border: 5px solid white; 
+    color: white;
+    text-shadow: 0 0 0.3em black ;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+    text-align: center;
+    background-color: rgba(243, 241, 241, 0.247);
+}

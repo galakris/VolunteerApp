@@ -16,7 +16,8 @@ import { NeedsListComponent } from './needs-list/needs-list.component';
 import { MyNeedsComponent } from './my-needs/my-needs.component';
 import { RegisterComponent } from './register/register.component';
 import { MapComponent } from './map/map.component';
-import { NeedsOverviewComponent } from './needs-overview/needs-overview.component'; // used to create fake backend
+import { NeedsOverviewComponent } from './needs-overview/needs-overview.component';
+import { NeedDetailsComponent } from './need-details/need-details.component'; // used to create fake backend
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NeedsOverviewComponent } from './needs-overview/needs-overview.componen
     MyNeedsComponent,
     RegisterComponent,
     MapComponent,
-    NeedsOverviewComponent
+    NeedsOverviewComponent,
+    NeedDetailsComponent
   ],
   imports: [
     BrowserModule,

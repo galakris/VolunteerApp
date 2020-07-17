@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(~bootstrap/dist/css/bootstrap.min.css);
 @import url(~font-awesome/css/font-awesome.css);
-
+ body{
+    background-image: url("http://tapetus.pl/obrazki/n/255977_kredki-serce.jpg" );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+ }

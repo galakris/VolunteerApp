@@ -1,29 +1,25 @@
-
-<div id="general">
-<section  id="s1" class="jumbotron text-center">
+<section id="s1" class="text-center">
   <div class="container">
-    
-    <p id="p1">"Kiedy pomagamy innym, pomagamy sobie, ponieważ wszelkie dobro, które dajemy, zatacza koło i wraca do nas"</p>
+
+    <p id="p1">"Kiedy pomagamy innym, pomagamy sobie, ponieważ wszelkie dobro, które dajemy, zatacza koło i wraca do
+      nas"</p>
     <p id="p2">
       Użytkownik: <strong *ngIf="currentUser">{{currentUser.firstName}} {{currentUser.lastName}}</strong>
     </p>
     <p id="p2">
       Rola: <strong>{{currentUser.role}}</strong>
     </p>
-    <a href="#mapsection" class="btn btn-primary m-2">Mapa</a>
-    <a href="#list" class="btn btn-primary m-2">Lista</a>
+    <a href="#list" id="l1" class="btn  m-2">Lista</a>
+    <a href="#mapsection" id="l1" class="btn  m-2">Mapa</a>
   </div>
-</section>
-<section>
-   <!-- <h1 class="jumbotron-heading; text-center"  style="margin-bottom: 30px;">Potrzebujący</h1> -->
-  <div id="mapsection"  style="height: 800px; margin-top: 0px; margin-left: 10px; margin-right: 10px;">
+
+  <!-- <h1 class="jumbotron-heading; text-center"  style="margin-bottom: 30px;">Potrzebujący</h1> -->
+  <div id="list" class="container">
+    <app-needs-list [needs]="needs"></app-needs-list>
+  </div>
+  <div id="mapsection" style="height: 800px; margin-top: 20px;" class="container">
     <app-map [needs]="needs"></app-map>
   </div>
 
-  <div id="list">
-    <app-needs-list [needs]="needs"></app-needs-list>
-  </div>
+
 </section>
-</div>
-
-
