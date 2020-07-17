@@ -1,5 +1,5 @@
 <div>
-  <h2 id="p2">Lista potrzeb w twojej okolicy</h2>
+  <h2 id="p2" *ngIf="parent=='home'">Lista potrzeb w twojej okolicy</h2>
   <table *ngIf="hideList==false && needs && needs.length > 0; else listEmpty" mdbTable striped="true" style="width:100%"
     responsive="true">
     <thead>

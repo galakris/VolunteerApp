@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit, DoCheck {
       lastName: new FormControl('', Validators.required),
       role: new FormControl(this.roles[1].value),
       email: new FormControl('', [Validators.required, Validators.email]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{9}$')]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
 
@@ -115,6 +116,7 @@ export class RegisterComponent implements OnInit, DoCheck {
       password: this.registerForm.value.password,
       firstName: this.registerForm.value.firstName,
       lastName: this.registerForm.value.lastName,
+      phoneNumber: this.registerForm.value.phoneNumber,
       role: this.registerForm.value.role,
       latitude: typeof this.latitude === 'undefined' ? 0.0 : this.latitude,
       longitude: typeof this.longitude === 'undefined' ? 0.0 : this.longitude

@@ -7,7 +7,8 @@
           <label for="firstName">Imię</label>
           <input type="text" formControlName="firstName" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && registerForm.controls.firstName.errors }" />
-          <div *ngIf="submitted && registerForm.controls.firstName.errors" class="invalid-feedback">
+          <div *ngIf="submitted && registerForm.controls.firstName.errors"
+            style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
             <div *ngIf="registerForm.controls.firstName.errors.required">Imię jest wymagane</div>
           </div>
         </div>
@@ -15,7 +16,8 @@
           <label for="lastName">Nazwisko</label>
           <input type="text" formControlName="lastName" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && registerForm.controls.lastName.errors }" />
-          <div *ngIf="submitted && registerForm.controls.lastName.errors" class="invalid-feedback">
+          <div *ngIf="submitted && registerForm.controls.lastName.errors"
+            style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
             <div *ngIf="registerForm.controls.lastName.errors.required">Nazwisko jest wymagane</div>
           </div>
         </div>
@@ -23,16 +25,28 @@
           <label for="email">E-mail</label>
           <input type="text" formControlName="email" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }" />
-          <div *ngIf="submitted && registerForm.controls.email.errors" class="invalid-feedback">
+          <div *ngIf="submitted && registerForm.controls.email.errors"
+            style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
             <div *ngIf="registerForm.controls.email.errors.required">E-mail jest wymagany</div>
             <div *ngIf="registerForm.controls.email.errors.email">E-mail jest niepoprawny</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Numer telefonu</label>
+          <input type="text" formControlName="phoneNumber" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && registerForm.controls.phoneNumber.errors }" />
+          <div *ngIf="submitted && registerForm.controls.phoneNumber.errors"
+            style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
+            <div *ngIf="registerForm.controls.phoneNumber.errors.required">Numer telefonu jest wymagany</div>
+            <div *ngIf="registerForm.controls.phoneNumber.errors.pattern">Numer telefonu jest niepoprawny</div>
           </div>
         </div>
         <div class="form-group">
           <label for="password">Hasło</label>
           <input type="password" formControlName="password" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }" />
-          <div *ngIf="submitted && registerForm.controls.password.errors" class="invalid-feedback">
+          <div *ngIf="submitted && registerForm.controls.password.errors"
+            style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
             <div *ngIf="registerForm.controls.password.errors.required">Hasło jest wymagane</div>
             <div *ngIf="registerForm.controls.password.errors.minlength">Hasło musi mieć przynajmniej 6 znaków</div>
           </div>
@@ -48,6 +62,10 @@
           <br />Ustaw znacznik w odpowiednim miejscu <i class="fa fa-smile-o" aria-hidden="true"></i>
         </label>
         <div class="map" id="map" class="match-parent"></div>
+        <div *ngIf="submitted && latitude==null"
+          style="font-size: 20px; color: rgb(250, 100, 100); text-shadow: 0 0 0.3em black ;">
+          <div>Zaznacz miejsce zamieszkania na mapie</div>
+        </div>
         <div class="form-group">
           <button id="b1" [disabled]="loading" class="btn btn-primary">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
