@@ -12,7 +12,12 @@
       <tr *ngFor="let nd of needs">
         <ng-container *ngIf="parent=='home'">
           <td> {{nd.name}} </td>
-          <td> {{nd.category}} </td>
+          <td>
+            <i *ngIf="nd.category=='Medicine'" class="fa fa-medkit fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Shopping'" class="fa fa-shopping-cart fa-2x"></i>
+            <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+          </td>
           <td> {{nd.distance}} </td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
@@ -24,7 +29,12 @@
             <i *ngIf="nd.needStatus=='InProgress'" class="fa fa-spinner fa-2x" aria-hidden="true"></i>
           </td>
           <td> {{nd.name}} </td>
-          <td> {{nd.category}} </td>
+          <td>
+            <i *ngIf="nd.category=='Medicine'" class="fa fa-medkit fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Shopping'" class="fa fa-shopping-cart fa-2x"></i>
+            <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+          </td>
           <td> {{nd.distance}} </td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
@@ -37,7 +47,12 @@
             <i *ngIf="nd.needStatus=='InProgress'" class="fa fa-spinner fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.needStatus=='NotStarted'" class="fa fa-search fa-2x" aria-hidden="true"></i>
           </td>
-          <td> {{nd.category}} </td>
+          <td>
+            <i *ngIf="nd.category=='Medicine'" class="fa fa-medkit fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Shopping'" class="fa fa-shopping-cart fa-2x"></i>
+            <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
+            <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
+          </td>
           <td> {{nd.distance}} </td>
           <td> {{nd.description}} </td>
           <td>
