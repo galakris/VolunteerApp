@@ -1,10 +1,10 @@
-<div *ngIf="need">
+<div id="d1" *ngIf="need" class="col-md-6 offset-md-3">
 
-  <h2>{{need.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{need.id}}</div>
-  <div><span>odległość: </span>{{need.distance}}</div>
-  <div><span>opis: </span>{{need.description}}</div>
+  <h2>{{need.name | uppercase}}</h2>
+  <div><span>Kategoria: </span>{{need.category}}</div>
+  <div><span>Opis: </span>{{need.description}}</div>
+  <div><span>Odległość: </span>{{need.distance}}</div>
   Do rozbudowy
-  <button *ngIf="currentUser.role === 'Volunteer'" (click)='assignNeed(need)'>Pomagam</button>
+  <button class="m-2" *ngIf="currentUser.role === 'Volunteer'" (click)='assignNeed(need)'>Pomagam</button>
 
 </div>

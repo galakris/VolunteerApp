@@ -1,6 +1,4 @@
-#general {
-    background-color:white;
-}
+
 
 #p1 {
     font-size: 40px;
@@ -9,9 +7,22 @@
     font-family: 'Times New Roman', Times, serif; 
     
     color: rgb(250, 246, 249);
-    text-shadow: 0 0 0.3em black ;
+    text-shadow: 0px 3px 0.3px black ;
 
-    margin-top: 30px;
+    margin-top: 170px;
+}
+#l1{
+  border: 1px solid rgb(139, 139, 139);
+  box-shadow: 5px 5px 10px black;
+  background-color: rgba(255, 255, 255, 0.425);
+  font-size: 20px;
+  font-style: italic;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  color: rgb(253, 251, 251);
+  text-shadow: 0 0 0.3em black ;
+  border-radius: 7px;
+  padding: 10px;
 }
 
 #p2{
@@ -22,16 +33,6 @@
     color: rgb(250, 252, 249);
     text-shadow: 0 0 0.3em black ;
 }
- #s1{ 
-    background-image: url("http://tapetus.pl/obrazki/n/255977_kredki-serce.jpg" );
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow: 5px 5px 10px;
-}
 
 
-h1{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: hotpink;
-}
+
