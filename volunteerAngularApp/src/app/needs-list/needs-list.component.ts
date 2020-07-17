@@ -18,6 +18,7 @@ import { Role } from '@/_models/role';
 export class NeedsListComponent implements OnInit {
 
   @Input() needs: Need[];
+  @Input() parent: string;
   columns: string[];
 
   currentUser: User;
@@ -38,7 +39,7 @@ export class NeedsListComponent implements OnInit {
     //];
 
     this.hideList = false;
-    this.columns = [ "Imie i Nazwisko", "Kategoria", "Odleglość"];
+    this.columns = [ "Imie i Nazwisko", "Kategoria", "Odleglość", ""];
   }
 
   onSelect(need: Need) {
@@ -46,9 +47,20 @@ export class NeedsListComponent implements OnInit {
     this.hideList = true;
   }
 
-  showList(){
+  showList() {
     this.selectedNeed = null;
     this.hideList = false;
   }
 
+  deleteNeed(need: Need){
+    this.needService.deleteNeed(need).subscribe(
+      res => {
+        alert('Usunięto.');
+      },
+      err => {
+        alert('Ups! Coś poszło nie tak :(');
+      }
+    );
+    console.log('delete need: ' + need.id);
+  }
 }
