@@ -39,7 +39,31 @@ export class NeedsListComponent implements OnInit {
     //];
 
     this.hideList = false;
-    this.columns = [ "Imie i Nazwisko", "Kategoria", "Odleglość", ""];
+    // different columns for different page
+    this.columns = [];
+    console.log('parent: ' + parent);
+    if (this.parent === 'needs-overview') {
+      this.columns.push('Status');
+      this.columns.push('Imie i Nazwisko');
+      this.columns.push('Kategoria');
+      this.columns.push('Odleglość');
+      // details/complete icon
+      this.columns.push('');
+    } else if (this.parent === 'home') {
+      this.columns.push('Imie i Nazwisko');
+      this.columns.push('Kategoria');
+      this.columns.push('Odleglość');
+      // details icon
+      this.columns.push('');
+    } else if (this.parent === 'my-needs') {
+      // status icon
+      this.columns.push('Status');
+      this.columns.push('Kategoria');
+      this.columns.push('Odleglość');
+      this.columns.push('Opis');
+      // details/delete icon
+      this.columns.push('');
+    }
   }
 
   onSelect(need: Need) {
@@ -52,7 +76,13 @@ export class NeedsListComponent implements OnInit {
     this.hideList = false;
   }
 
-  deleteNeed(need: Need){
+
+  completeTask(need: Need) {
+    // to do
+    console.log('complete need: ' + need.id);
+  }
+
+  deleteNeed(need: Need) {
     this.needService.deleteNeed(need).subscribe(
       res => {
         alert('Usunięto.');

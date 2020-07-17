@@ -60,7 +60,7 @@ export class AddNeedComponent implements OnInit {
       deadlineDate: new Date(new Date().getTime() + 86400000), //current datetime + 1 day
       latitude: this.currentUser.latitude,
       longitude: this.currentUser.longitude,
-      state: NeedState.New,
+      needStatus: NeedState.New,
       userId: this.currentUser.id
     });
 

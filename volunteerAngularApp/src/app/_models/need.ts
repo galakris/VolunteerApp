@@ -7,7 +7,7 @@ export class Need {
   name: string;
   userId: number;
   category: NeedCategory;
-  state: NeedState;
+  needStatus: NeedState;
   description: string;
   deadlineDate: Date;
   latitude?: number;
