@@ -5,13 +5,22 @@ table {
     box-shadow: 10px 10px 15px ;
 }
 
-#n1 { 
+#p2{
+  font-size: 30px;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: rgb(250, 252, 249);
+  text-shadow: 0 0 0.3em black ;
+}
+
+#n1 {
     background-color: rgba(53, 50, 51, 0.959);
     color: white;
     border-radius: 10px;
-    
+
     /* border-top: 1px solid purple; */
-    
+
 }
 #b1{
   border: 1px solid rgb(139, 139, 139);
@@ -25,7 +34,7 @@ table {
   text-shadow: 0.1em 0.1em 0.4em black ;
   border-radius: 7px;
   padding: 10px;
-  
+
 }
 
 tbody tr:hover {
@@ -34,15 +43,15 @@ tbody tr:hover {
   text-shadow: 0 0 0.3em white ;
 }
 tbody tr{
-  background-color: rgba(182, 176, 176, 0.815); 
+  background-color: rgba(182, 176, 176, 0.815);
   font-size: 16px;
   font-weight: 500;
   color: white;
   text-shadow: 0 0 0.4em black ;
 }
 
-th,td { 
+th,td {
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid rgb(38, 38, 39); 
+  border-bottom: 1px solid rgb(38, 38, 39);
 }

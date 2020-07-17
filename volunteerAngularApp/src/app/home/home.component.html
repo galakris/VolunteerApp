@@ -18,12 +18,10 @@
 
     <!-- <h1 class="jumbotron-heading; text-center"  style="margin-bottom: 30px;">Potrzebujący</h1> -->
     <div id="list" style="margin-top: 300px; padding-top: 100px;">
-      <h2 id="p2">Lista potrzeb w twojej okolicy</h2>
       <app-needs-list [needs]="needs" [parent]="'home'"></app-needs-list>
     </div>
 
     <div id="mapsection" style="height: 800px; margin-top: 400px; margin-bottom: 100px; padding-top: 100px;">
-      <h2 id="p2">Mapa potrzeb w twojej okolicy</h2>
       <app-map [needs]="needs"></app-map>
     </div>
   </div>

@@ -76,7 +76,6 @@ export class NeedsListComponent implements OnInit {
     this.hideList = false;
   }
 
-
   completeTask(need: Need) {
     // to do
     console.log('complete need: ' + need.id);
@@ -85,6 +84,7 @@ export class NeedsListComponent implements OnInit {
   deleteNeed(need: Need) {
     this.needService.deleteNeed(need).subscribe(
       res => {
+        this.needs = this.needs.filter(n => need !== n);
         alert('Usunięto.');
       },
       err => {
