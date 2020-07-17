@@ -86,7 +86,12 @@ namespace Volunteer.Services.Users.Services
             return new UserAccountDto
             {
                 UserAccountId = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Longitude = user.Longitude,
+                Latitude = user.Latitude,
+                LastName = user.LastName,
+                Role = user.Role,
+                FirstName = user.FirstName
             };
         }
 

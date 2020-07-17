@@ -78,6 +78,8 @@ namespace VolunteerApi
                         var claimsIdentity = new ApiIdentity();
                         claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                         claimsIdentity.UserAcountId = user.UserAccountId;
+                        claimsIdentity.Longitude = user.Longitude;
+                        claimsIdentity.Latitude = user.Latitude;
                         context.Principal.AddIdentity(claimsIdentity);
                         return Task.CompletedTask;
                     }

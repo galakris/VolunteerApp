@@ -27,9 +27,9 @@ namespace Volunteer.DAL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Category")
+                    b.Property<int>("Category")
                         .HasColumnName("category")
-                        .HasColumnType("text");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DeadlineDate")
                         .HasColumnName("deadline_date")
@@ -46,6 +46,10 @@ namespace Volunteer.DAL.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnName("longitude")
                         .HasColumnType("double precision");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("text");
 
                     b.Property<int>("NeedStatus")
                         .HasColumnName("need_status")

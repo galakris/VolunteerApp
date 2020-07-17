@@ -53,9 +53,9 @@ namespace Volunteer.DAL
                 .WithMany(x => x.UserAccountNeeds)
                 .HasForeignKey(x => x.UserAccountId);
 
-            modelBuilder.Entity<NeedEntity>()
-                .Property(x => x.NeedStatus)
-                .HasConversion(new EnumToStringConverter<NeedStatus>());
+            //modelBuilder.Entity<NeedEntity>()
+            //    .Property(x => x.NeedStatus)
+            //    .HasConversion(new EnumToStringConverter<NeedStatus>());
         }
     }
 }

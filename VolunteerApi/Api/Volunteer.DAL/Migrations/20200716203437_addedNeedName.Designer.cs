@@ -10,8 +10,8 @@ using Volunteer.DAL;
 namespace Volunteer.DAL.Migrations
 {
     [DbContext(typeof(DalContext))]
-    [Migration("20200701182733_addedRole")]
-    partial class addedRole
+    [Migration("20200716203437_addedNeedName")]
+    partial class addedNeedName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,9 @@ namespace Volunteer.DAL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Category")
+                    b.Property<int>("Category")
                         .HasColumnName("category")
-                        .HasColumnType("text");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DeadlineDate")
                         .HasColumnName("deadline_date")
@@ -48,6 +48,10 @@ namespace Volunteer.DAL.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnName("longitude")
                         .HasColumnType("double precision");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("text");
 
                     b.Property<int>("NeedStatus")
                         .HasColumnName("need_status")

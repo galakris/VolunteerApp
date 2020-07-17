@@ -10,6 +10,8 @@ namespace Volunteer.DAL.Entities
 {
     public class NeedEntity : Entity
     {
+        public string Name { get; set; }
+
         public NeedCategory Category { get; set; }
 
         public string Description { get; set; }

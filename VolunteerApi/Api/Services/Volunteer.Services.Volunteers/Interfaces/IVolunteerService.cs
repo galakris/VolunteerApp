@@ -6,6 +6,6 @@ namespace Volunteer.Services.Volunteers.Interfaces
 {
     public interface IVolunteerService
     {
-        Task<List<SearchVolunteersResponseDto>> SearchVolunteers();
+        Task<List<SearchVolunteersResponseDto>> SearchVolunteers(int maxDistanceKm);
     }
 }

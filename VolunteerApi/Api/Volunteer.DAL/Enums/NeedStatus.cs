@@ -6,8 +6,8 @@ namespace Volunteer.DAL.Enums
 {
     public enum NeedStatus
     {
-        NotStarted,
-        InProgress,
-        Finished
+        NotStarted = 0,
+        InProgress = 1,
+        Finished = 2
     }
 }

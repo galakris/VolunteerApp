@@ -2,6 +2,6 @@
 {
     public enum LocationType
     {
-        BaseLocation
+        BaseLocation = 0
     }
 }

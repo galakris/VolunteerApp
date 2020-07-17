@@ -6,6 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Volunteer.DAL.Enums;
 using Volunteer.Services.Needs.Interfaces;
 using Volunteer.Services.Needs.Models;
 using Volunteer.SharedObjects.Models;
@@ -33,9 +34,17 @@ namespace VolunteerApi.Controllers
         }
 
         [Authorize]
+        [HttpGet("my")]
+        [ProducesResponseType(typeof(ICollection<NeedDto>), 200)]
+        public async Task<IActionResult> GetMy()
+        {
+            return Ok(await _needService.GetNeeds(true));
+        }
+
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
-        [ProducesResponseType(typeof(NeedDto), 200)]
+        [ProducesResponseType(typeof(CreateNeedResponseDto), 200)]
         public async Task<IActionResult> Create([FromBody] CreateNeedRequestDto requestDto)
         {
             var validator = new CreateNeedRequestDtoValidator();
@@ -46,9 +55,28 @@ namespace VolunteerApi.Controllers
         [Authorize]
         [HttpGet("{needId}/takeExecution")]
         [ProducesResponseType(typeof(AssignVolunteerToNeedResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
         public async Task<IActionResult> TakeExecution([FromRoute] int needId)
         {
             return Ok(await _needService.AssignVolunteerToNeed(needId));
+        }
+
+        [Authorize]
+        [HttpGet("{needId}/finish")]
+        [ProducesResponseType(typeof(AssignVolunteerToNeedResponseDto), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        public async Task<IActionResult> End([FromRoute] int needId)
+        {
+            return Ok(await _needService.ModifyNeedStatus(needId, NeedStatus.Finished));
+        }
+
+        [Authorize]
+        [HttpDelete("{needId}")]
+        [ProducesResponseType(typeof(int), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        public async Task<IActionResult> DeleteNeed([FromRoute] int needId)
+        {
+            return Ok(await _needService.DeleteNeed(needId));
         }
     }
 }

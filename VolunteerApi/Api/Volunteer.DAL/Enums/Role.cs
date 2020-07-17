@@ -6,7 +6,7 @@ namespace Volunteer.DAL.Enums
 {
     public enum Role
     {
-        Needy,
-        Volunteer
+        Needy = 0,
+        Volunteer = 1
     }
 }

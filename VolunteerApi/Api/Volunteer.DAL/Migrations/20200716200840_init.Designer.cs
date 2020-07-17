@@ -10,8 +10,8 @@ using Volunteer.DAL;
 namespace Volunteer.DAL.Migrations
 {
     [DbContext(typeof(DalContext))]
-    [Migration("20200619180034_NeedAndRole")]
-    partial class NeedAndRole
+    [Migration("20200716200840_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,9 +29,9 @@ namespace Volunteer.DAL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Category")
+                    b.Property<int>("Category")
                         .HasColumnName("category")
-                        .HasColumnType("text");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DeadlineDate")
                         .HasColumnName("deadline_date")
@@ -97,6 +97,14 @@ namespace Volunteer.DAL.Migrations
                         .HasColumnName("last_name")
                         .HasColumnType("text");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnName("latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnName("longitude")
+                        .HasColumnType("double precision");
+
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnName("password_hash")
                         .HasColumnType("bytea");
@@ -104,6 +112,10 @@ namespace Volunteer.DAL.Migrations
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnName("password_salt")
                         .HasColumnType("bytea");
+
+                    b.Property<int>("Role")
+                        .HasColumnName("role")
+                        .HasColumnType("integer");
 
                     b.Property<string>("UserName")
                         .HasColumnName("user_name")

@@ -9,5 +9,9 @@ namespace Volunteer.SharedObjects
         public int UserAcountId { get; set; }
 
         public Role Role { get; set; }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
     }
 }

@@ -29,51 +29,104 @@ namespace Volunteer.Services.Needs.Services
             _apiIdentity = apiIdentity;
         }
 
-        public async Task<ICollection<NeedDto>> GetNeeds()
+        public async Task<ICollection<NeedDto>> GetNeeds(bool my = false)
         {
-            var needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
-                .Where(x => x.NeedStatus == NeedStatus.NotStarted && x.UserAccountNeeds.Any(y => y.UserAccountId != _apiIdentity.UserAcountId))
-                .ToListAsync();
+            List<NeedEntity> needs;
+
+            if(my)
+            {
+                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                    .Where(x => x.UserAccountNeeds.Any(y => y.UserAccountId == _apiIdentity.UserAcountId)).ToListAsync();
+            }
+            else
+            {
+                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                    .Where(x => x.NeedStatus == NeedStatus.NotStarted && x.UserAccountNeeds.Any(y => y.UserAccountId != _apiIdentity.UserAcountId))
+                    .ToListAsync();
+            }
 
             return needs.Select(x => new NeedDto()
             {
+                Name = x.Name,
                 Category = x.Category,
                 DeadlineDate = x.DeadlineDate,
                 Description = x.Description,
                 Latitude = x.Latitude,
                 Longitude = x.Longitude,
-                NeedId = x.Id,
+                Distance = Math.Round(DistanceExtension.GetDistance(new PointModel(_apiIdentity.Latitude, _apiIdentity.Longitude), new PointModel(x.Latitude, x.Longitude), DistanceUnit.Kilometers), 2),
+                Id = x.Id,
                 NeedStatus = x.NeedStatus
             }).ToList();
         }
 
-        public async Task<NeedDto> CreateNeed(CreateNeedRequestDto requestDto)
+        public async Task<int> DeleteNeed(int needId)
+        {
+            var need = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                    .SingleOrDefaultAsync(x => x.UserAccountNeeds.Any(y => y.UserAccountId == _apiIdentity.UserAcountId && y.Role == Role.Needy) && x.Id == needId);
+
+            if (need == null)
+            {
+                throw new Exception("Need not exist, or you do not have permissions");
+            }
+
+            _dalContext.Needs.Remove(need);
+            await _dalContext.SaveChangesAsync();
+
+            return needId;
+        }
+
+        public async Task<NeedDto> ModifyNeedStatus(int needId, NeedStatus needStatus)
+        {
+            var need = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                .SingleOrDefaultAsync(x => x.UserAccountNeeds.Any(y => y.UserAccountId == _apiIdentity.UserAcountId) && x.Id == needId);
+
+            need.NeedStatus = needStatus;
+            _dalContext.Needs.Update(need);
+            await _dalContext.SaveChangesAsync();
+
+            return new NeedDto()
+            {
+                Name = need.Name,
+                Category = need.Category,
+                DeadlineDate = need.DeadlineDate,
+                Description = need.Description,
+                Latitude = need.Latitude,
+                Longitude = need.Longitude,
+                Distance = Math.Round(DistanceExtension.GetDistance(new PointModel(_apiIdentity.Latitude, _apiIdentity.Longitude), new PointModel(need.Latitude, need.Longitude), DistanceUnit.Kilometers), 2),
+                Id = need.Id,
+                NeedStatus = need.NeedStatus
+            };
+        }
+
+        public async Task<CreateNeedResponseDto> CreateNeed(CreateNeedRequestDto requestDto)
         {
             var need = new NeedEntity()
             {
+                Name = requestDto.Name,
                 Description = requestDto.Description,
                 DeadlineDate = requestDto.DeadlineDate,
                 Category = requestDto.Category,
                 Latitude = requestDto.Latitude,
                 Longitude = requestDto.Longitude,
-                NeedStatus = DAL.Enums.NeedStatus.NotStarted
+                NeedStatus = NeedStatus.NotStarted
             };
 
-            _dalContext.Needs.Add(need);
+            await _dalContext.Needs.AddAsync(need);
             await _dalContext.SaveChangesAsync();
 
             var userAccountNeed = new UserAccountNeed()
             {
                 NeedId = need.Id,
                 UserAccountId = _apiIdentity.UserAcountId,
-                Role = DAL.Enums.Role.Needy
+                Role = Role.Needy
             };
 
             _dalContext.UserAccountNeeds.Add(userAccountNeed);
             await _dalContext.SaveChangesAsync();
 
-            return new NeedDto()
+            return new CreateNeedResponseDto()
             {
+                Name = need.Name,
                 Category = need.Category,
                 DeadlineDate = need.DeadlineDate,
                 Description = need.Description,

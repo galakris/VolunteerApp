@@ -2,9 +2,9 @@
 {
     public enum NeedCategory
     {
-        Shopping,
-        Walk,
-        Medicine,
-        Other
+        Shopping = 0,
+        Walk =1,
+        Medicine= 2,
+        Other = 3
     }
 }
