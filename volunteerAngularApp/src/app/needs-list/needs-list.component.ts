@@ -18,6 +18,7 @@ import { Role } from '@/_models/role';
 export class NeedsListComponent implements OnInit {
 
   @Input() needs: Need[];
+  @Input() parent: string;
   columns: string[];
 
   currentUser: User;
@@ -32,13 +33,13 @@ export class NeedsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.needs = [
-      { id: 1, name: this.currentUser.firstName + ' ' + this.currentUser.lastName, userId: 1, category: NeedCategory.Shopping, state: NeedState.New, description: 'Daj Pan chleba', deadlineDate: new Date(), latitude: 51.1534, longitude: 17.0712, distance: 5.75 },
-      { id: 2, name: this.currentUser.firstName + ' ' + this.currentUser.lastName, userId: 1, category: NeedCategory.Shopping, state: NeedState.New, description: 'Piwko i frytki', deadlineDate: new Date(), latitude: 51.1105, longitude: 17.0312, distance: 5.95 }
-    ];
+    // this.needs = [
+    //   { id: 1, name: this.currentUser.firstName + ' ' + this.currentUser.lastName, userId: 1, category: NeedCategory.Shopping, state: NeedState.New, description: 'Daj Pan chleba', deadlineDate: new Date(), latitude: 51.1534, longitude: 17.0712, distance: 5.75 },
+    //   { id: 2, name: this.currentUser.firstName + ' ' + this.currentUser.lastName, userId: 1, category: NeedCategory.Shopping, state: NeedState.New, description: 'Piwko i frytki', deadlineDate: new Date(), latitude: 51.1105, longitude: 17.0312, distance: 5.95 }
+    // ];
 
     this.hideList = false;
-    this.columns = ["ID", "Imie", "Kategoria", "Opis"];
+    this.columns = ["ID", "Imie", "Kategoria", "Opis", ""];
   }
 
   onSelect(need: Need) {
@@ -46,9 +47,20 @@ export class NeedsListComponent implements OnInit {
     this.hideList = true;
   }
 
-  showList(){
+  showList() {
     this.selectedNeed = null;
     this.hideList = false;
   }
 
+  deleteNeed(need: Need){
+    this.needService.deleteNeed(need).subscribe(
+      res => {
+        alert('Usunięto.');
+      },
+      err => {
+        alert('Ups! Coś poszło nie tak :(');
+      }
+    );
+    console.log('delete need: ' + need.id);
+  }
 }

@@ -1,6 +1,6 @@
 <div style="width: 1200px; margin-left: auto;
 margin-right: auto;">
-  <table *ngIf="hideList==false" mdbTable striped="true" style="width:100%" responsive="true">
+  <table *ngIf="hideList==false && needs && needs.length > 0; else listEmpty" mdbTable striped="true" style="width:100%" responsive="true">
     <thead>
       <tr>
         <th id="n1" *ngFor="let col of columns" scope="col">
@@ -9,14 +9,19 @@ margin-right: auto;">
       </tr>
     </thead>
     <tbody>
-      <tr mdbTableCol *ngFor="let nd of needs" (click)='onSelect(nd)'>
+      <tr mdbTableCol *ngFor="let nd of needs">
         <th scope="row">{{nd.id}}</th>
         <td> {{nd.name}} </td>
         <td> {{nd.category}} </td>
         <td> {{nd.description}} </td>
+        <td>
+          <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
+          <i class="fa fa-trash fa-2x" aria-hidden="true" *ngIf="parent=='my-needs'" (click)="deleteNeed(nd)"></i>
+        </td>
       </tr>
     </tbody>
   </table>
   <app-need-details [need]="selectedNeed"></app-need-details>
   <button *ngIf="hideList==true" (click)="showList()">Powrót do listy</button>
+  <ng-template #listEmpty><h3>Lista jest pusta. Najpierw dodaj potrzebę :)</h3></ng-template>
 </div>
