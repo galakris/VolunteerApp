@@ -1,22 +1,22 @@
-
-<div  style="width: 1200px; margin-left: auto;
-margin-right: auto;" >
-    <table mdbTable  striped="true" style="width:100%" responsive="true">
-        <thead>
-          <tr>
-            <th id="n1" *ngFor="let col of columns" scope="col">
-                {{col}}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr mdbTableCol *ngFor="let nd of needs">
-            <th scope="row">{{nd.id}}</th>
-               <td> {{nd.name}} </td>
-               <td> {{nd.category}} </td>
-               <td> {{nd.description}} </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    
+<div style="width: 1200px; margin-left: auto;
+margin-right: auto;">
+  <table *ngIf="hideList==false" mdbTable striped="true" style="width:100%" responsive="true">
+    <thead>
+      <tr>
+        <th id="n1" *ngFor="let col of columns" scope="col">
+          {{col}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr mdbTableCol *ngFor="let nd of needs" (click)='onSelect(nd)'>
+        <th scope="row">{{nd.id}}</th>
+        <td> {{nd.name}} </td>
+        <td> {{nd.category}} </td>
+        <td> {{nd.description}} </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-need-details [need]="selectedNeed"></app-need-details>
+  <button *ngIf="hideList==true" (click)="showList()">Powrót do listy</button>
+</div>

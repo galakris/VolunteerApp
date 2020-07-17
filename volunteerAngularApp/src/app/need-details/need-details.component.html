@@ -1,0 +1,10 @@
+<div *ngIf="need">
+
+  <h2>{{need.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{need.id}}</div>
+  <div><span>odległość: </span>{{need.distance}}</div>
+  <div><span>opis: </span>{{need.description}}</div>
+  Do rozbudowy
+  <button *ngIf="currentUser.role === 'Volunteer'" (click)='assignNeed(need)'>Pomagam</button>
+
+</div>
