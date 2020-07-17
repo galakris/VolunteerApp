@@ -6,8 +6,12 @@ namespace Volunteer.Services.Needs.Models
 {
     public class AssignVolunteerToNeedResponseDto
     {
-        public int UserAccountId { get; set; }
+        public int VolunteerUserAccountId { get; set; }
 
         public int NeedId { get; set; }
+
+        public string NeedyFirstName { get; set; }
+
+        public string NeedyTelephone { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace Volunteer.DAL.Entities
 
         public double Longitude { get; set; }
 
+        public string Telephone { get; set; }
+
         public Role Role { get; set; }
 
         public byte[] PasswordHash { get; set; }

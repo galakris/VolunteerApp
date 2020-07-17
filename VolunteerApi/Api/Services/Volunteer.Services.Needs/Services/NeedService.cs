@@ -35,12 +35,12 @@ namespace Volunteer.Services.Needs.Services
 
             if(my)
             {
-                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds).ThenInclude(x => x.UserAccount)
                     .Where(x => x.UserAccountNeeds.Any(y => y.UserAccountId == _apiIdentity.UserAcountId)).ToListAsync();
             }
             else
             {
-                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds)
+                needs = await _dalContext.Needs.Include(x => x.UserAccountNeeds).ThenInclude(x => x.UserAccount)
                     .Where(x => x.NeedStatus == NeedStatus.NotStarted && x.UserAccountNeeds.Any(y => y.UserAccountId != _apiIdentity.UserAcountId))
                     .ToListAsync();
             }
@@ -55,7 +55,17 @@ namespace Volunteer.Services.Needs.Services
                 Longitude = x.Longitude,
                 Distance = Math.Round(DistanceExtension.GetDistance(new PointModel(_apiIdentity.Latitude, _apiIdentity.Longitude), new PointModel(x.Latitude, x.Longitude), DistanceUnit.Kilometers), 2),
                 Id = x.Id,
-                NeedStatus = x.NeedStatus
+                NeedStatus = x.NeedStatus,
+                Needy =  new NeedUser()
+                {
+                    Telephone = x.UserAccountNeeds.SingleOrDefault(y => y.Role == Role.Needy)?.UserAccount.Telephone,
+                    FirstName = x.UserAccountNeeds.SingleOrDefault(y => y.Role == Role.Needy)?.UserAccount.FirstName
+                },
+                AssignedVolunteer = x.UserAccountNeeds.Any(y => y.Role == Role.Volunteer) ? new NeedUser()
+                {
+                    Telephone = x.UserAccountNeeds.SingleOrDefault(y => y.Role == Role.Volunteer)?.UserAccount.Telephone,
+                    FirstName = x.UserAccountNeeds.SingleOrDefault(y => y.Role == Role.Volunteer)?.UserAccount.FirstName
+                } : null
             }).ToList();
         }
 
@@ -138,20 +148,33 @@ namespace Volunteer.Services.Needs.Services
 
         public async Task<object> AssignVolunteerToNeed(int needId)
         {
-            var need = await _dalContext.Needs.SingleOrDefaultAsync(x => x.Id == needId);
+            if (_apiIdentity.Role == Role.Needy)
+            {
+                throw new Exception("You are needy, you can not help");
+            }
+
+            var need = await _dalContext.Needs.Include(x => x.UserAccountNeeds).ThenInclude(x => x.UserAccount)
+                .SingleOrDefaultAsync(x => x.Id == needId);
             if(need == null)
             {
-                throw new Exception("Need not exist");
+                throw new Exception("Need not exist, or you do not assign to you");
             }
+
+            if (need.UserAccountNeeds.Any(y => y.Role == Role.Volunteer))
+            {
+                throw new Exception("This need is already assigned to another volunteer");
+            }
+
+            var needyUser = need.UserAccountNeeds.Single(x => x.Role == Role.Needy).UserAccount;
 
             var userAccountNeed = new UserAccountNeed()
             {
                 NeedId = need.Id,
                 UserAccountId = _apiIdentity.UserAcountId,
-                Role = DAL.Enums.Role.Volunteer
+                Role = Role.Volunteer
             };
 
-            need.NeedStatus = DAL.Enums.NeedStatus.InProgress;
+            need.NeedStatus = NeedStatus.InProgress;
             _dalContext.UserAccountNeeds.Add(userAccountNeed);
             _dalContext.Needs.Update(need);
             await _dalContext.SaveChangesAsync();
@@ -159,7 +182,9 @@ namespace Volunteer.Services.Needs.Services
             return new AssignVolunteerToNeedResponseDto()
             {
                 NeedId = need.Id,
-                UserAccountId = _apiIdentity.UserAcountId
+                VolunteerUserAccountId = _apiIdentity.UserAcountId,
+                NeedyTelephone = needyUser.Telephone,
+                NeedyFirstName = needyUser.FirstName
             };
         }
 

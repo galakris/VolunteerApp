@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Volunteer.Services.Users.Interfaces;
 using Volunteer.Services.Users.Models;
+using VolunteerApi.Validators;
 
 namespace VolunteerApi.Controllers
 {
@@ -26,6 +28,8 @@ namespace VolunteerApi.Controllers
         [ProducesResponseType(typeof(UserAccountDto), 200)]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
         {        
+            var validator = new RegisterRequestValidator();
+            await validator.ValidateAndThrowAsync(model);
             return Ok(await _userService.Create(model));
         }
     }

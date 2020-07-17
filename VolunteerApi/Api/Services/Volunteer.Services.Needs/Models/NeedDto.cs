@@ -24,9 +24,20 @@ namespace Volunteer.Services.Needs.Models
 
         public double Distance { get; set; }
 
+        public NeedUser AssignedVolunteer { get; set; }
+
+        public NeedUser Needy { get; set; }
+
         [JsonConverter(typeof(StringEnumConverter))]
         public NeedStatus NeedStatus { get; set; }
 
         public DateTime DeadlineDate { get; set; }
+    }
+
+    public class NeedUser
+    {
+        public string FirstName { get; set; }
+
+        public string Telephone { get; set; }
     }
 }
