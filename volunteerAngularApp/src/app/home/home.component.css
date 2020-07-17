@@ -2,10 +2,10 @@
 
 #p1 {
     font-size: 40px;
-    
+
     font-style: italic;
-    font-family: 'Times New Roman', Times, serif; 
-    
+    font-family: 'Times New Roman', Times, serif;
+
     color: rgb(250, 246, 249);
     text-shadow: 0px 3px 0.3px black ;
 
@@ -32,6 +32,15 @@
 
     color: rgb(250, 252, 249);
     text-shadow: 0 0 0.3em black ;
+}
+
+#h2{
+  font-size: 40px;
+  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: rgb(250, 252, 249);
+  text-shadow: 0 0 0.3em black ;
 }
 
 
