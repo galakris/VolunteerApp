@@ -55,3 +55,36 @@ th,td {
   text-align: center;
   border-bottom: 1px solid rgb(38, 38, 39);
 }
+
+.fa{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.fa-spinner{
+  color: blue;
+}
+.
+
+.fa-trash{
+  color: red;
+}
+.fa-trash:hover{
+  color: darkred;
+}
+
+.fa-info-circle{
+  color: lightblue;
+}
+.fa-info-circle:hover{
+  color: blue;
+}
+.fa-check{
+  color: green;
+}
+.fa-check:hover{
+  color: darkgreen;
+}
+.fa-search{
+  color: yellow;
+}
+
