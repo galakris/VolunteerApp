@@ -5,6 +5,8 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Volunteer.DAL;
 using Volunteer.DAL.Entities;
+using Volunteer.DAL.Enums;
+using Volunteer.DAL.Relations;
 using Volunteer.Services.Users.Interfaces;
 using Volunteer.Services.Users.Models;
 
@@ -24,7 +26,7 @@ namespace Volunteer.Services.Users.Services
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = await _context.Users.SingleOrDefaultAsync(x => username == x.UserName);
+            var user = await _context.Users.Include(x => x.RoleUserAccount).SingleOrDefaultAsync(x => username == x.UserName);
 
             if (user == null)
                 return null;
@@ -35,7 +37,12 @@ namespace Volunteer.Services.Users.Services
             return new UserAccountDto
             {
                 UserAccountId = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Latitude = user.Latitude,
+                Longitude = user.Longitude,
+                Role = user.Role
             };
         }
 
@@ -56,7 +63,11 @@ namespace Volunteer.Services.Users.Services
                 LastName = model.LastName,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                UserName = model.UserName
+                UserName = model.UserName,
+                Longitude = model.Longitude,
+                Latitude = model.Latitude,
+                Role = model.Role,
+                Telephone = model.Telephone
             };
 
             _context.Users.Add(userEntity);
@@ -76,7 +87,12 @@ namespace Volunteer.Services.Users.Services
             return new UserAccountDto
             {
                 UserAccountId = user.Id,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Longitude = user.Longitude,
+                Latitude = user.Latitude,
+                LastName = user.LastName,
+                Role = user.Role,
+                FirstName = user.FirstName
             };
         }
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Volunteer.Services.Auth.Models;
 using Volunteer.Services.Users.Interfaces;
 using VolunteerApi.ConfigurationModels;
 using VolunteerApi.Models;
@@ -25,6 +26,7 @@ namespace VolunteerApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
+        [ProducesResponseType(typeof(LoginResponseDto), 200)]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
             var user = await _userService.Authenticate(model.UserName, model.Password);
@@ -46,12 +48,14 @@ namespace VolunteerApi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new
+            return Ok(new LoginResponseDto()
             {
-                Id = user.UserAccountId,
-                UserName = user.UserName,
-
-                Token = tokenString
+                Token = tokenString,
+                Role = user.Role,
+                Latitude = user.Latitude,
+                Longitude = user.Longitude,
+                LastName = user.LastName,
+                FirstName = user.FirstName
             });
         }
     }

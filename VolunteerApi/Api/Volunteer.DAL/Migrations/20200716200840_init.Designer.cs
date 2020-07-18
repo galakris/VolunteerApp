@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volunteer.DAL;
@@ -9,9 +10,10 @@ using Volunteer.DAL;
 namespace Volunteer.DAL.Migrations
 {
     [DbContext(typeof(DalContext))]
-    partial class DalContextModelSnapshot : ModelSnapshot
+    [Migration("20200716200840_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,10 +48,6 @@ namespace Volunteer.DAL.Migrations
                     b.Property<double>("Longitude")
                         .HasColumnName("longitude")
                         .HasColumnType("double precision");
-
-                    b.Property<string>("Name")
-                        .HasColumnName("name")
-                        .HasColumnType("text");
 
                     b.Property<int>("NeedStatus")
                         .HasColumnName("need_status")
@@ -118,10 +116,6 @@ namespace Volunteer.DAL.Migrations
                     b.Property<int>("Role")
                         .HasColumnName("role")
                         .HasColumnType("integer");
-
-                    b.Property<string>("Telephone")
-                        .HasColumnName("telephone")
-                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .HasColumnName("user_name")
