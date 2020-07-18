@@ -39,7 +39,31 @@ export class NeedsListComponent implements OnInit {
     //];
 
     this.hideList = false;
-    this.columns = [ "Imie i Nazwisko", "Kategoria", "Odleglość", ""];
+    // different columns for different page
+    this.columns = [];
+    console.log('parent: ' + parent);
+    if (this.parent === 'needs-overview') {
+      this.columns.push('Status');
+      this.columns.push('Termin');
+      this.columns.push('Kategoria');
+      this.columns.push('Odleglość');
+      // details/complete icon
+      this.columns.push('');
+    } else if (this.parent === 'home') {
+      this.columns.push('Kategoria');
+      this.columns.push('Termin');
+      this.columns.push('Odleglość');
+      // details icon
+      this.columns.push('');
+    } else if (this.parent === 'my-needs') {
+      // status icon
+      this.columns.push('Status');
+      this.columns.push('Kategoria');
+      this.columns.push('Odleglość');
+      this.columns.push('Opis');
+      // details/delete icon
+      this.columns.push('');
+    }
   }
 
   onSelect(need: Need) {
@@ -52,9 +76,26 @@ export class NeedsListComponent implements OnInit {
     this.hideList = false;
   }
 
-  deleteNeed(need: Need){
+  completeTask(need: Need) {
+    console.log('complete need: ' + need.id);
+    this.needService.finishNeed(need).subscribe(
+      res => {
+        need.needStatus = NeedState.Finished;
+        const index = this.needs.findIndex(n => n.id === need.id);
+        need.needStatus = NeedState.Finished;
+        this.needs[index] = need;
+        alert('Zakończono pomyślnie :)');
+      },
+      err => {
+        alert('Ups! Coś poszło nie tak');
+      }
+    );
+  }
+
+  deleteNeed(need: Need) {
     this.needService.deleteNeed(need).subscribe(
       res => {
+        this.needs = this.needs.filter(n => need !== n);
         alert('Usunięto.');
       },
       err => {

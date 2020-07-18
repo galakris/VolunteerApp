@@ -40,6 +40,7 @@ export class AddNeedComponent implements OnInit {
     this.needForm = new FormGroup({
       category: new FormControl(this.categories[0].value),
       description: new FormControl('', Validators.required),
+      deadlineDate: new FormControl(new Date(new Date().getTime() + 86400000), Validators.required)
     });
   }
 
@@ -57,10 +58,11 @@ export class AddNeedComponent implements OnInit {
       name: this.currentUser.firstName + ' ' + this.currentUser.lastName,
       category: this.needForm.value.category,
       description: this.needForm.value.description,
-      deadlineDate: new Date(new Date().getTime() + 86400000), //current datetime + 1 day
+      deadlineDate: new Date(this.needForm.value.deadlineDate), //current datetime + 1 day
+      //deadlineDate: new Date(new Date().getTime() + 86400000), //current datetime + 1 day
       latitude: this.currentUser.latitude,
       longitude: this.currentUser.longitude,
-      state: NeedState.New,
+      needStatus: NeedState.New,
       userId: this.currentUser.id
     });
 

@@ -1,10 +1,52 @@
-<div id="d1" *ngIf="need" class="col-md-6 offset-md-3">
+<div id="d1" *ngIf="need" class="col-md-6 offset-md-3" style="margin-top: 100px;">
 
-  <h2>{{need.name | uppercase}}</h2>
-  <div><span>Kategoria: </span>{{need.category}}</div>
-  <div><span>Opis: </span>{{need.description}}</div>
-  <div><span>Odległość: </span>{{need.distance}}</div>
-  Do rozbudowy
-  <button class="m-2" *ngIf="currentUser.role === 'Volunteer'" (click)='assignNeed(need)'>Pomagam</button>
+  <table style="width: 100%;">
+    <tr>
+      <td class="one">Kategoria:</td>
+      <td class="two" *ngIf="need.category=='Shopping'">Zrobienie zakupów</td>
+      <td class="two" *ngIf="need.category=='Medicine'">Zdrowie</td>
+      <td class="two" *ngIf="need.category=='Walk'">Wyprowadzenie zwierzęcia</td>
+      <td class="two" *ngIf="need.category=='Other'">Inne</td>
+    </tr>
+    <tr>
+      <td class="one">Odległość:</td>
+      <td class="two">{{need.distance}} km</td>
+    </tr>
+    <tr>
+      <td class="one">Termin:</td>
+      <td class="two">{{need.deadlineDate | date:'dd.MM.yyyy' }}</td>
+    </tr>
+    <tr>
+      <td class="one">Opis:</td>
+      <td class="two">{{need.description}}</td>
+    </tr>
+  </table>
+  <div *ngIf="need.assignedVolunteer">
+    <hr style="border: 2px solid white;">
+    <table style="width: 100%;">
+      <tr>
+        <td class="one">Wolontariusz:</td>
+        <td class="two">{{need.assignedVolunteer.firstName}}</td>
+      </tr>
+      <tr>
+        <td class="one">Numer telefonu:</td>
+        <td class="two">{{need.assignedVolunteer.telephone}}</td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="need.needy">
+    <hr style="border: 2px solid white;">
+    <table style="width: 100%;">
+      <tr>
+        <td class="one">Potrzebujący:</td>
+        <td class="two">{{need.needy.firstName}}</td>
+      </tr>
+      <tr>
+        <td class="one">Numer telefonu:</td>
+        <td class="two">{{need.needy.telephone}}</td>
+      </tr>
+    </table>
+  </div>
+  <button id="b1" class="m-2" *ngIf="currentUser.role === 'Volunteer' && need.needStatus=='NotStarted'" (click)='assignNeed(need)'>Pomagam</button>
 
 </div>

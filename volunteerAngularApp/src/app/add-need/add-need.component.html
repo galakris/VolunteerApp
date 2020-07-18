@@ -1,8 +1,16 @@
-<div class="container" >
+<div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <h2>Dodawanie potrzeby</h2>
       <form [formGroup]="needForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="deadlineDate">Data</label>
+          <input type="date" formControlName="deadlineDate" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && needForm.controls.deadlineDate.errors }" />
+          <div *ngIf="submitted && needForm.controls.deadlineDate.errors" class="invalid-feedback">
+            <div *ngIf="needForm.controls.deadlineDate.errors.required">Data jest wymagana</div>
+          </div>
+        </div>
         <div class="form-group">
           <label for="category">Kategoria</label>
           <select formControlName="category" class="form-control">
