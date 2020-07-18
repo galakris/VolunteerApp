@@ -66,7 +66,8 @@ namespace Volunteer.Services.Users.Services
                 UserName = model.UserName,
                 Longitude = model.Longitude,
                 Latitude = model.Latitude,
-                Role = model.Role
+                Role = model.Role,
+                Telephone = model.Telephone
             };
 
             _context.Users.Add(userEntity);

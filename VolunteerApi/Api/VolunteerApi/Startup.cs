@@ -80,6 +80,7 @@ namespace VolunteerApi
                         claimsIdentity.UserAcountId = user.UserAccountId;
                         claimsIdentity.Longitude = user.Longitude;
                         claimsIdentity.Latitude = user.Latitude;
+                        claimsIdentity.Role = user.Role;
                         context.Principal.AddIdentity(claimsIdentity);
                         return Task.CompletedTask;
                     }
