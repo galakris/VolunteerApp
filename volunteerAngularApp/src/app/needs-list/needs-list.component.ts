@@ -44,14 +44,14 @@ export class NeedsListComponent implements OnInit {
     console.log('parent: ' + parent);
     if (this.parent === 'needs-overview') {
       this.columns.push('Status');
-      this.columns.push('Imie i Nazwisko');
+      this.columns.push('Termin');
       this.columns.push('Kategoria');
       this.columns.push('Odleglość');
       // details/complete icon
       this.columns.push('');
     } else if (this.parent === 'home') {
-      this.columns.push('Imie i Nazwisko');
       this.columns.push('Kategoria');
+      this.columns.push('Termin');
       this.columns.push('Odleglość');
       // details icon
       this.columns.push('');

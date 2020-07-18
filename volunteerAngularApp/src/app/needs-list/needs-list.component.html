@@ -3,8 +3,8 @@
   <table *ngIf="hideList==false && needs && needs.length > 0; else listEmpty" mdbTable striped="true" style="width:100%"
     responsive="true">
     <thead>
-      <tr>
-        <th id="n1" *ngFor="let col of columns" scope="col">
+      <tr id="n1">
+        <th *ngFor="let col of columns" scope="col">
           {{col}}
         </th>
       </tr>
@@ -12,13 +12,13 @@
     <tbody>
       <tr *ngFor="let nd of needs">
         <ng-container *ngIf="parent=='home'">
-          <td> {{nd.name}} </td>
           <td>
             <i *ngIf="nd.category=='Medicine'" class="fa fa-medkit fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.category=='Shopping'" class="fa fa-shopping-cart fa-2x"></i>
             <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
           </td>
+          <td> {{nd.deadlineDate | date:'dd.MM.yyyy' }} </td>
           <td> {{nd.distance}} </td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
@@ -29,7 +29,7 @@
             <i *ngIf="nd.needStatus=='Finished'" class="fa fa-check fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.needStatus=='InProgress'" class="fa fa-spinner fa-2x" aria-hidden="true"></i>
           </td>
-          <td> {{nd.name}} </td>
+          <td> {{nd.deadlineDate | date:'dd.MM.yyyy' }} </td>
           <td>
             <i *ngIf="nd.category=='Medicine'" class="fa fa-medkit fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.category=='Shopping'" class="fa fa-shopping-cart fa-2x"></i>
@@ -39,7 +39,8 @@
           <td> {{nd.distance}} </td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
-            <i *ngIf="nd.needStatus!='Done'" class="fa fa-check fa-2x" aria-hidden="true" (click)='completeTask(nd)'></i>
+            <i *ngIf="nd.needStatus!='Done'" class="fa fa-check fa-2x" aria-hidden="true"
+              (click)='completeTask(nd)'></i>
           </td>
         </ng-container>
         <ng-container *ngIf="parent=='my-needs'">
@@ -65,8 +66,9 @@
     </tbody>
   </table>
   <app-need-details [need]="selectedNeed"></app-need-details>
-  <ng-template #listEmpty >
-    <h3 *ngIf="hideList==false" class="text-center" style="margin-top: 200px;" id="p2">Lista jest pusta. Najpierw dodaj potrzebę <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
+  <ng-template #listEmpty>
+    <h3 *ngIf="hideList==false" class="text-center" style="margin-top: 200px;" id="p2">Lista jest pusta. Najpierw dodaj
+      potrzebę <i class="fa fa-smile-o" aria-hidden="true"></i></h3>
   </ng-template>
   <button id="b1" class="mr-1" *ngIf="hideList==true" (click)="showList()">Powrót do listy</button>
 </div>
