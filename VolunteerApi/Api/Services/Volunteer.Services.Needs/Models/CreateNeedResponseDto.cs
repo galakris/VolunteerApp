@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json.Converters;
 using Volunteer.DAL.Enums;
 
 namespace Volunteer.Services.Needs.Models
 {
-    public class NeedDto
+    public class CreateNeedResponseDto
     {
-        public int Id { get; set; }
+        public int NeedId { get; set; }
 
         public string Name { get; set; }
 
@@ -22,22 +20,9 @@ namespace Volunteer.Services.Needs.Models
 
         public double Longitude { get; set; }
 
-        public double Distance { get; set; }
-
-        public NeedUser AssignedVolunteer { get; set; }
-
-        public NeedUser Needy { get; set; }
-
         [JsonConverter(typeof(StringEnumConverter))]
         public NeedStatus NeedStatus { get; set; }
 
         public DateTime DeadlineDate { get; set; }
-    }
-
-    public class NeedUser
-    {
-        public string FirstName { get; set; }
-
-        public string Telephone { get; set; }
     }
 }

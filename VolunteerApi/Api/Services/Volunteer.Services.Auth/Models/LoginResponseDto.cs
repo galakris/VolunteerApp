@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Volunteer.DAL.Enums;
-using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using Volunteer.DAL.Enums;
 
-namespace Volunteer.Services.Users.Models
+namespace Volunteer.Services.Auth.Models
 {
-    public class UserAccountDto
+    public class LoginResponseDto
     {
-        public string UserName { get; set; }
-
-        public int UserAccountId { get; set; }
+        public string Token { get; set; }
 
         public string FirstName { get; set; }
 

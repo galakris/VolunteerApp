@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Extensions\Volunteer.SharedObjects\Volunteer.SharedObjects.csproj" />
     <ProjectReference Include="..\..\Volunteer.DAL\Volunteer.DAL.csproj" />
-    <ProjectReference Include="..\Volunteer.Services.Volunteers\Volunteer.Services.Volunteers.csproj" />
   </ItemGroup>
 
 </Project>
