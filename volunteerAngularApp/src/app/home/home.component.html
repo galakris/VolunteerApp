@@ -8,8 +8,11 @@
         Witaj <strong *ngIf="currentUser">{{currentUser.firstName}} {{currentUser.lastName}}!</strong>
       </p>
 
-    <p id="p2">
-      Rola: <strong>{{currentUser.role}}</strong>
+    <p id="p2" *ngIf="currentUser.role=='Needy'">
+      Potrzebujesz pomocy? Dodaj nową potrzebę
+    </p>
+    <p id="p2" *ngIf="currentUser.role=='Volunteer'">
+      Chcesz pomóc? Sprawdź listę aktualnych potrzeb
     </p>
 
       <a href="#list" id="l1" class="btn  m-2">Lista</a>

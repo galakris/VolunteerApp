@@ -19,7 +19,7 @@
             <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
           </td>
           <td> {{nd.deadlineDate | date:'dd.MM.yyyy' }} </td>
-          <td> {{nd.distance}} </td>
+          <td> {{nd.distance}} km</td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
           </td>
@@ -36,7 +36,7 @@
             <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
           </td>
-          <td> {{nd.distance}} </td>
+          <td> {{nd.distance}} km</td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
             <i *ngIf="nd.needStatus!='Done'" class="fa fa-check fa-2x" aria-hidden="true"
@@ -55,7 +55,7 @@
             <i *ngIf="nd.category=='Walk'" class="fa fa-paw fa-2x" aria-hidden="true"></i>
             <i *ngIf="nd.category=='Other'" class="fa fa-question-circle fa-2x" aria-hidden="true"></i>
           </td>
-          <td> {{nd.distance}} </td>
+          <td> {{nd.distance}} km</td>
           <td> {{nd.description}} </td>
           <td>
             <i class="fa fa-info-circle fa-2x" aria-hidden="true" (click)='onSelect(nd)'></i>
